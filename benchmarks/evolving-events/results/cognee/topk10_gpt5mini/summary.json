@@ -1,0 +1,12 @@
+{
+  "Human-like Correctness": 0.912,
+  "Human-like Correctness Error": [
+    0.867,
+    0.95
+  ],
+  "DeepEval Correctness": 0.635,
+  "DeepEval Correctness Error": [
+    0.607,
+    0.662
+  ]
+}

@@ -1,0 +1,502 @@
+[
+  {
+    "question": "Why did one partition choke unnoticed?",
+    "answer": "because a routing configuration change funneled large traffic shares to certain partitions, one partition hit a bottleneck while overall throughput stayed steady. partition rebalancing didn’t activate due to stale capacity signals, and operators lacked clear dashboards showing per-partition traffic share and queue depth (and an mTLS handshake health view), so the choke went unnoticed.",
+    "golden_answer": "Routing rules concentrated traffic so one partition saturated and its backlog grew while others idled. The internal chat noted overall throughput looked steady, which can hide an imbalance; responders advised checking effective rule weights / effective traffic share per rule and monitoring distribution, not just aggregates."
+  },
+  {
+    "question": "What hid imbalance from totals?",
+    "answer": "metric contamination (instrumentation changes making conversions appear higher) combined with dashboards that lacked partition-health visibility (queue depth and rebalance decisions) hid the routing imbalance from the totals.",
+    "golden_answer": "A stable overall throughput or aggregate success metric can look fine even when one partition saturates. The chat excerpt described steady throughput while one partition choked; the runbook recommends monitoring distribution and partition-level utilization/backlog to spot the imbalance."
+  },
+  {
+    "question": "How detect rules not behaving?",
+    "answer": "compute deltas between the source-of-truth configuration and runtime configuration — including effective traffic share per rule — to detect missing/extra rules and inconsistent weights and check effective rule weights for routing imbalance. use synthetic canaries (to catch errors like invalid certificate material or trust-chain mismatches) and add a configuration diff alert to detect mismatches quickly.",
+    "golden_answer": "Maintain a single source of truth for routing configuration, diff it against effective runtime configuration, and alert on unexpected deltas. Also track “effective traffic share per rule” to catch cases where a rule exists but does not behave as expected."
+  },
+  {
+    "question": "How stop duplicates and verify?",
+    "answer": "to stop duplicates, ensure consistent idempotency keys on retries, avoid problematic batch-refund scripts, and follow the merchant checklist to verify idempotency usage, check logs, reconcile orders, and identify safe orders per the playbook. to verify, stabilize routing first (restarts can change dedup behavior), run the fix verification checklist to confirm reports stay stable under retries and duplicate deliveries, use the playbook to diagnose client-log vs warehouse mismatches, and perform access reviews to ensure privileges match job responsibilities.",
+    "golden_answer": "Customer guidance says to retry with exponential backoff + jitter and use a stable idempotency key derived from a business object (e.g., message identifier) that does not change across retries. The runbook verification step is to confirm idempotency gate behavior remains consistent during worker restarts and retries; the internal chat mentions customers saw duplicates when idempotency keys were inconsistent."
+  },
+  {
+    "question": "Which retry style is recommended?",
+    "answer": "exponential backoff with jitter is recommended (avoid aggressive fixed-interval retry loops); clients and customers should retry failed or uncertain requests using exponential backoff and jitter, per support guidance and the public status page.",
+    "golden_answer": "Clients should retry with exponential backoff and jitter when a send request fails or is uncertain."
+  },
+  {
+    "question": "How avoid resend spam?",
+    "answer": "clients must treat a retry of a send request as a confirm/complete operation and avoid firing repeated sends when delivery confirmations are delayed, since customer retries cause duplicate deliveries and notification fan-out can amplify those duplicates.",
+    "golden_answer": "If delivery confirmations are delayed, clients should avoid firing repeated sends as a workaround; instead poll for delivery status via the message identifier or rely on callbacks. If retrying is necessary, treat the retry as “confirm or complete,” not “create a new send.”"
+  },
+  {
+    "question": "What two fixes stabilized the system?",
+    "answer": "correcting the routing configuration (which stabilized delivery success) and updating the thermostat firmware (which stabilized the pairing process and avoided crashes).",
+    "golden_answer": "The incident narrative states mitigation required both correcting routing configuration and reducing backlog pressure. After those actions, the system stabilized, highlighting that correctness under retries must be treated as first-class."
+  },
+  {
+    "question": "Why gate requests, and signal clearly?",
+    "answer": "gate requests to apply backpressure via admission control when cloud messaging platform backlog is severe, to enforce request validation and rate control at the edge gateway, and to control rollouts/experiments with control-plane feature flags and experimentation systems while keeping idempotency gates consistent across worker restarts to avoid duplicate deliveries. signal clearly by emitting diagnostic observability metrics (edge success, partition health details like queue depth and rebalance decisions) in dashboards and by documenting each data field and who can access it per data minimization so operators can detect, diagnose, and act without leaking unnecessary data.",
+    "golden_answer": "The runbook recommends gating new send requests when backlog is severe—controlled rejection can be safer than accepting work that can’t be processed. It also recommends providing clear error signals so clients retry safely with backoff instead of hammering the system."
+  },
+  {
+    "question": "Which diff reveals drift?",
+    "answer": "the computed delta between the source-of-truth routing configuration and the runtime configuration reveals drift, flagging unexpected differences such as missing or extra rules and inconsistent weights.",
+    "golden_answer": "Periodically compute a diff between source-of-truth routing configuration and effective runtime configuration."
+  },
+  {
+    "question": "What deltas should trigger alerts?",
+    "answer": "alerts should fire on deltas between source-of-truth and runtime such as missing or extra rules, inconsistent rule weights, and unexpected effective traffic share per rule (rules present but not performing as expected), as well as validation anomalies like sudden drops in key events and changes in pipeline stages. expiry alerts should be routed to paging and the verified on‑call channel.",
+    "golden_answer": "Alert on missing rules, extra rules, inconsistent weights, or unapproved overrides."
+  },
+  {
+    "question": "Why roll out gradually?",
+    "answer": "to limit blast radius and verify behavior: safe rollouts use feature flags and the control plane’s experimentation systems with canary routing and guardrails to apply changes gradually. this lets teams monitor metrics like error rates, performance, support contacts and partition utilization (and catch effects such as increases in freshly started proxy instances) before wider release.",
+    "golden_answer": "Apply routing changes gradually (canary routing if available) to a small fraction of tenants and watch partition utilization; halt and revert if a partition’s backlog grows faster than drain rate."
+  },
+  {
+    "question": "What metric beats aggregate throughput?",
+    "answer": "the distribution of per-partition utilization (per-partition throughput/imbalance) beats aggregate throughput, since monitoring per-partition metrics reveals bottlenecks even when overall throughput looks steady.",
+    "golden_answer": "The runbook warns that stable overall throughput can hide severe imbalance; monitor distribution like partition utilization and “effective traffic share per rule.” The chat excerpt reinforces this: throughput looked steady while one partition was choking."
+  },
+  {
+    "question": "When halt routing rollout?",
+    "answer": "halt the rollout when any partition backlog grows faster than its drain rate; guardrails will stop and revert the routing change, using canary routing and monitoring to detect such growth.",
+    "golden_answer": "Halt the rollout and revert if any partition’s backlog grows faster than drain rate."
+  },
+  {
+    "question": "What proves delivery aligns internally?",
+    "answer": "matching customer-visible delivery success with internal drain metrics proves internal alignment; the verification step in turn proves handshake recovery.",
+    "golden_answer": "The runbook verification calls for confirming traffic share is balanced, idempotency gate behavior is consistent during restarts/retries, and customer-visible delivery success aligns with internal drain metrics."
+  },
+  {
+    "question": "What should dedupe survive?",
+    "answer": "dedupe should survive restarts; verify deduplication (which uses event_id and event_name in the dedupe key) after stabilizing routing to avoid inflated counts or incorrect collapsing.",
+    "golden_answer": "Verification requires confirming idempotency gate behavior stays consistent during worker restarts and retries. Customer guidance also requires a stable idempotency key that does not change across retries to prevent duplicates when acknowledgements lag."
+  },
+  {
+    "question": "Why treat config like code?",
+    "answer": "because generating runtime configuration from a single source-of-truth routing configuration ensures consistency and enables drift detection, and treating flags as production-critical config lets you exercise changes with synthetic canaries and avoid stale flags that create hidden branches and reduce test coverage and complicate debugging. add decision records and data-minimization documentation (why each field exists and who can access it) so new team members understand design and access.",
+    "golden_answer": "The runbook says routing changes are high-impact, so configuration should be reviewed, staged, rolled out with monitoring, and have rollback."
+  },
+  {
+    "question": "What is 'known-good' used for?",
+    "answer": "\"known-good\" denotes a validated, high-integrity version of a trust bundle (the \"known-good trust bundle\") used in mutual TLS; runbooks prefer rotating certificates to that bundle as a reversible mitigation for handshake failures and certificate state must align with it. it also refers to a known-good routing configuration available for quick restoration in safe routing change processes.",
+    "golden_answer": "Keep a known-good routing configuration that can be restored quickly during incidents or failed rollouts."
+  },
+  {
+    "question": "Which ID should clients reuse?",
+    "answer": "clients should reuse the stable idempotency key derived from the business object (for example an internal message identifier); if using the minimal event schema, reuse the client-side salted-hash identifier.",
+    "golden_answer": "Customer guidance says use a stable idempotency key derived from the business object (e.g., internal message identifier) and do not change it across retries. The internal chat notes customers saw duplicates after retries, suggesting inconsistent idempotency keys."
+  },
+  {
+    "question": "How confirm routing is balanced?",
+    "answer": "confirm routing is balanced by verifying partition capacity and partition utilization are even using current rebalancing signals and by checking effective rule weights for no large traffic shares to specific partitions. apply safe canary routing changes and monitor partition utilization, keeping a known-good routing configuration available for quick restoration.",
+    "golden_answer": "The runbook verification is to confirm traffic share is balanced across partitions and check partition utilization/backlog; the chat excerpt highlights why this matters (one partition choking despite steady aggregate throughput)."
+  },
+  {
+    "question": "Why can throughput look fine?",
+    "answer": "overall throughput can look fine because aggregate metrics hide a bottleneck on one partition — distribution/partition utilization must be monitored to detect severe imbalances. additionally, caching (causing sample ratio mismatch) and lack of strict gateway admission control (allowing backlog growth without fail fast) can skew traffic allocation and mask localized issues.",
+    "golden_answer": "The runbook explains stable overall throughput can hide an imbalance when one partition saturates and others idle; the chat excerpt exemplifies this observation (steady throughput, one partition choking)."
+  },
+  {
+    "question": "Why is auditability emphasized?",
+    "answer": "auditability is emphasized because high-impact flags and changes to high-value objects require audit logging and recorded access requests, and nimbuscrm is designed to ensure those audit trails. having those logs and proper notice handling reduces emergency work, helps manage risks during customer audits, and supports privacy requirements (documenting why each data field exists and who can access it).",
+    "golden_answer": "NimbusCRM’s design goal is auditability: changes to high-value objects should be traceable, and integrations should avoid silent overwrites."
+  },
+  {
+    "question": "Which objects are considered core?",
+    "answer": "certificates (certificate lifecycle management) and the high-value objects tracked in nimbuscrm are considered core.",
+    "golden_answer": "Account, Contact, Deal, Activity, and Task are the core objects."
+  },
+  {
+    "question": "How link contacts to companies?",
+    "answer": "assign the contact to the company’s account (contacts belong to an account in nimbuscrm); contacts can also be shared across multiple accounts in some configurations.",
+    "golden_answer": "A contact belongs to an account; some configurations allow contacts to be shared across accounts."
+  },
+  {
+    "question": "What ties deals to people?",
+    "answer": "contacts tie deals to people: deals can be associated with one or more contacts (and also belong to an account).",
+    "golden_answer": "Deals belong to an account and can be associated with one or more contacts."
+  },
+  {
+    "question": "Where can activities attach?",
+    "answer": "in nimbuscrm, activities can be attached to contacts, accounts, and deals.",
+    "golden_answer": "Activities can be attached to accounts, contacts, or deals."
+  },
+  {
+    "question": "What can tasks link to?",
+    "answer": "tasks can be linked to any object type — for example contacts, deals, and accounts.",
+    "golden_answer": "Tasks can be linked to any object type and can be reassigned; they have owner and status (with optional due logic)."
+  },
+  {
+    "question": "Which field anchors cross-system sync?",
+    "answer": "external_reference — it must be stable and consistent across retries and serves as the anchor to prevent record duplication in nimbuscrm.",
+    "golden_answer": "For imports, NimbusCRM supports an external_reference field to map records between systems. Robust integrations store and reuse external_reference so retries don’t create duplicate records."
+  },
+  {
+    "question": "Why keep stable object IDs?",
+    "answer": "to prevent duplicate records and enable reliable reconciliation: clients must supply a stable idempotency key derived from the business object (e.g., an internal message id or a client-side salted hash), purchase_completed events link to a stable order_id, and external_reference must remain stable to avoid nimbuscrm duplication. support uses order ids to reconcile charge/refund mismatches, and the privacy guideline prefers pseudonymous ids over raw personal data.",
+    "golden_answer": "NimbusCRM uses stable object identifiers for API access; external systems store these identifiers for synchronization."
+  },
+  {
+    "question": "What avoids duplicates after retries?",
+    "answer": "idempotency keys avoid duplicates after retries by making retry attempts safe and preventing duplicate message deliveries or duplicate charges. the analytics pipeline leverages idempotency to guarantee at-least-once delivery without inflating metrics.",
+    "golden_answer": "The data model recommends using external_reference to map records and prevent duplicates when retries occur. The product overview also stresses integrations should avoid silent overwrites and keep changes traceable—both help prevent retry-induced duplication/corruption."
+  },
+  {
+    "question": "How handle wrong custom types?",
+    "answer": "identify the mismatched custom field on accounts or contacts (typed as text, number, boolean, single-select, or multi-select), apply the playbook debugging steps to convert/clean values (e.g., fix unit or currency conversion mistakes), and then update the custom field type to the correct typed field; if schema changes are frequent, use property graph for more flexible modeling.",
+    "golden_answer": "Custom fields are typed; integrations must respect the schema. Writing a string into a numeric field should be rejected rather than silently coerced—supporting NimbusCRM’s auditability/integrity goals."
+  },
+  {
+    "question": "What triggers stage validations?",
+    "answer": "stage validations are triggered by changes in pipeline stages. they run validation mechanisms such as schema checks, required-property checks, and anomaly detection (e.g., sudden drops in key events).",
+    "golden_answer": "Deals move through pipeline stages; each stage can have required fields and validation rules when a deal moves stages."
+  },
+  {
+    "question": "Which channels notify changes?",
+    "answer": "push, email, and webhook are the downstream channels workers use to deliver messages; expiry alerts specifically route to a verified on‑call channel. the developer api also emits webhook events (e.g., setpoint_changed).",
+    "golden_answer": "NimbusCRM provides a webhook system for event notifications (and also a REST API)."
+  },
+  {
+    "question": "What integrations must enforce access?",
+    "answer": "integrations must enforce access when using a dedicated service principal — the service principal must have more limited permissions than an employee's personal token and enforce oauth scopes and identity controls (protecting admin consoles, endpoint configuration, and log access). access requests for those integrations must verify the requester's identity as part of the documented workflow.",
+    "golden_answer": "NimbusCRM integrates with support, billing, and marketing systems while enforcing role-based access controls."
+  },
+  {
+    "question": "What does import/export support?",
+    "answer": "nimbuscrm's import/export workflow supports handling bulk data, enabling customer requests, business continuity, and analytics workflows.",
+    "golden_answer": "NimbusCRM includes an import/export workflow for bulk data."
+  },
+  {
+    "question": "What is key design goal?",
+    "answer": "the key design goal is duplicate-delivery prevention by having clients supply a stable idempotency key derived from the business object (e.g., an internal message identifier) and persistently storing that key in the merchant’s order record.",
+    "golden_answer": "NimbusCRM emphasizes auditability—changes to high-value objects should be traceable and integrations should avoid silent overwrites. Stable IDs and external_reference support this by enabling clean synchronization."
+  },
+  {
+    "question": "What groups search queries reliably?",
+    "answer": "fairness checks group search queries by user groups, looking for systematic differences in exposure.",
+    "golden_answer": "Aggregations shouldn’t rely on free-form query_text; canonical_query is the intended grouping key."
+  },
+  {
+    "question": "Why avoid free-text grouping?",
+    "answer": "because grouping fields are checked for consistency, free-text or untrusted text (e.g., user-provided files) is brittle across schema changes and breaks multi-hop queries and the playbook’s canonical ordering rules for time-based grouping, leading to visualization and debugging issues.",
+    "golden_answer": "query_text alone is unreliable for grouping; canonical_query should be used so analysis groups semantically identical queries consistently, especially under retries/sampling."
+  },
+  {
+    "question": "Which IDs improve log trust?",
+    "answer": "pseudonymous ids (per data-minimization) and system-specific ids like order ids improve log trust by enabling analytics and reconciliation without exposing raw personal data; these should be combined with identity controls that protect access to logs.",
+    "golden_answer": "Include a unique request_id and a monotonic event_sequence within a session."
+  },
+  {
+    "question": "What tags separate intent from tries?",
+    "answer": "channel tags (kept consistent for attribution) and the consent_flag (checked in segmentation logic) separate intent from tries, with channel tags ensuring attribution consistency and consent_flag distinguishing consented intent vs apparent drops.",
+    "golden_answer": "Tag retry_attempt and include retry_group_id so analysts can measure unique user intents separately from retry-driven transport attempts."
+  },
+  {
+    "question": "What prevents retry double-counting?",
+    "answer": "idempotency keys prevent retry double-counting by making retries safe and stopping duplicate charges — support guidance specifically requires idempotency keys for \"/v1/charge\". note: duplicates can still occur if keys are inconsistent or if internal retry paths bypass idempotency enforcement (for example during worker restarts).",
+    "golden_answer": "Avoid counting duplicate retries as distinct intent; tag retry_attempt and group them with retry_group_id."
+  },
+  {
+    "question": "What sampling metadata must exist?",
+    "answer": "sampling metadata must include recorded sampling parameters and a clear sampling protocol as evaluation artifacts, the filter size used (e.g., 300 µm mesh), the flow conditions during sampling, and the minimal-event-schema fields consent_flag and country.",
+    "golden_answer": "Include sample_rate and sample_method when sampling is used."
+  },
+  {
+    "question": "What documents ranking config per request?",
+    "answer": "the recommendation system configures ranking per request using multiple ranking profiles, with the ranking layer fetching personalization features inline and switching to a fallback ranking path when personalization features are unavailable.",
+    "golden_answer": "Store the ranking_profile and the top features used in a compact form so comparisons don’t confuse which model/config produced results."
+  },
+  {
+    "question": "What two embeddings are combined?",
+    "answer": "user embeddings and content embeddings are combined: user embeddings capture users' preference patterns and content embeddings capture similarity between items.",
+    "golden_answer": "Content embeddings capture item similarity, while user embeddings capture preference patterns; the system blends them."
+  },
+  {
+    "question": "How avoid narrow repetition?",
+    "answer": "use small friction changes (e.g., an extra confirmation step or brief delay) to reduce unwanted repetition and small conveniences (templates, presets) to increase desired repetition, track repetition metrics to measure effect, and emphasize education for sustainable habits rather than short-term restriction.",
+    "golden_answer": "The rollout overview describes a blending layer that combines relevance, diversity, and safety constraints to avoid narrow repetition. The fairness/safety chunk adds that diversity constraints can prevent runaway feedback loops even when engagement signals favor narrow categories."
+  },
+  {
+    "question": "Which profile suits cold-start users?",
+    "answer": "the new users profile: it's designed for users with minimal history and relies more heavily on content similarity signals to handle the cold-start.",
+    "golden_answer": "A profile designed for new users with minimal history relies more heavily on content similarity signals."
+  },
+  {
+    "question": "Which profile favors long-term diversity?",
+    "answer": "the long-term satisfaction and diversity profile favors long-term diversity; it prioritizes sustained satisfaction and diverse content, with the blending layer enforcing diversity constraints to prevent runaway feedback loops.",
+    "golden_answer": "One ranking profile prioritizes long-term satisfaction and diversity (vs a profile prioritizing short-term engagement)."
+  },
+  {
+    "question": "Which offline metrics are used?",
+    "answer": "offline evaluation uses recall and ndcg to measure ranking quality, computed on historical interaction data.",
+    "golden_answer": "Offline evaluation tracks NDCG and recall on historical interaction data."
+  },
+  {
+    "question": "What online signals include negatives?",
+    "answer": "online evaluation signals include negatives captured via \"hide\" actions, which are used as negative feedback metrics.",
+    "golden_answer": "Online evaluation uses click-through rate, long-click rate, and “hide” actions as negative feedback."
+  },
+  {
+    "question": "Which guardrails beat engagement lift?",
+    "answer": "guardrails that beat short-term engagement lift include complaint rate, block rate, support contact rate, error rates, performance metrics, and partition backlog/drain behavior. these guardrails are monitored as experiment metrics and in safe rollouts (with feature flags) and will halt or revert routing/rollout changes if they degrade (for example, if any partition backlog grows faster than its drain rate).",
+    "golden_answer": "Evaluation guardrails include complaint rate, block rate, and support contact rate. Rollback strategy emphasizes triggers based on error rate, latency, and safety metrics rather than engagement alone."
+  },
+  {
+    "question": "How check exposure bias?",
+    "answer": "run fairness checks that look for systematic differences in exposure across user groups and across creators, control and measure exposure with feature flags, and cross-check analysis pipelines during validation while monitoring for sample ratio mismatch that can bias results.",
+    "golden_answer": "Look for systematic differences in exposure across user groups and creators."
+  },
+  {
+    "question": "How keep restricted items away?",
+    "answer": "use high-impact flags to restrict access and limit export capability to a small set of roles, while compliance workflows run automated checks that flag restricted licenses. safety checks provide additional review for sensitive categories and user settings can suppress certain restricted content.",
+    "golden_answer": "Safety checks ensure restricted content is not recommended to inappropriate audiences and sensitive categories have additional review."
+  },
+  {
+    "question": "Which user controls change embeddings?",
+    "answer": "the \"not interested\" mechanism changes the user embedding; no other user control in the provided context is stated to modify embeddings.",
+    "golden_answer": "Controls include user settings that suppress categories, creator-level blocks, and a “not interested” mechanism that influences the user embedding."
+  },
+  {
+    "question": "What stops runaway feedback loops?",
+    "answer": "diversity constraints in ranking systems prevent runaway feedback by ensuring users see a broader range of topics despite strong engagement signals; operational measures — online evaluation using \"hide\" actions as negative feedback, admission-control fail-fast limits, exponential-backoff retries instead of aggressive fixed-interval loops, and guardrails that halt and revert rollouts if any partition backlog grows faster than its drain rate — also stop runaway feedback loops.",
+    "golden_answer": "The blending layer can enforce diversity constraints so users see a broader range of topics even when engagement signals are strong for a narrow category, preventing runaway feedback loops."
+  },
+  {
+    "question": "How roll back without redeploy?",
+    "answer": "toggle the feature flag to disable the new code and revert the recommendation system to a simpler ranking profile without redeploying. monitor safe-rollout guardrails — error rates, performance, and support contacts — follow the recorded rollback strategy from the meeting and use carefully redacted samples to debug.",
+    "golden_answer": "Deployment uses a feature-flag control plane with a safe default; if guardrails degrade, the system can revert to a simpler ranking profile without redeploying."
+  },
+  {
+    "question": "What triggers rollback decisions?",
+    "answer": "rollback decisions are triggered by meetings for technical changes and by written decision records that include a rollback plan; teams record the rollback strategy in the shared decision system.",
+    "golden_answer": "Rollback triggers are based on error rate, latency, and safety metrics (not engagement alone). Guardrail examples referenced in evaluation include complaint rate, block rate, and support contact rate."
+  },
+  {
+    "question": "Why did checkout seem to drop?",
+    "answer": "checkout appeared to drop because end-to-end delivery success sharply fell after new pods continued failing mTLS handshakes even after the rollback (new pods still negotiated mTLS). this was compounded by partition imbalance (partition rebalancing didn’t activate due to stale capacity signals), high queue pressure, and required checkout_started properties (item_count, cart_value_usd) plus lack of an mTLS-handshake health dashboard, which slowed diagnosis.",
+    "golden_answer": "The analysis showed an apparent drop between add_to_cart and checkout_started that didn’t match order volume. Root cause: some clients emitted checkout_started missing required properties, so ingestion rejected or quarantined those events; concentrated on a platform configuration using a legacy event emitter."
+  },
+  {
+    "question": "What made the 'gap' fake?",
+    "answer": "the gap was fake because the legacy event emitter emitted purchase_completed events that lacked consistent linkage to earlier funnel events, causing funnel breaks that made sent vs delivered counts appear to diverge.",
+    "golden_answer": "Inconsistent instrumentation caused checkout_started rejects/quarantines and purchase_completed events lacking consistent linkage to earlier funnel events, making the session-level funnel appear broken despite real orders."
+  },
+  {
+    "question": "Which step lacked needed properties?",
+    "answer": "the checkout_started funnel step lacked the needed properties, triggering the validation's required-property checks due to missing required properties.",
+    "golden_answer": "Some clients emitted checkout_started with missing required properties, leading ingestion to reject or quarantine the event."
+  },
+  {
+    "question": "Why did some starts get rejected?",
+    "answer": "they were rejected because the starter showed spoilage signs — unusual colors or a rotten smell — and policy requires discarding those and restarting with fresh flour and water. a healthy starter should instead display a mildly tangy aroma and be kept in a clean jar with room for expansion.",
+    "golden_answer": "checkout_started events missing required properties were rejected/quarantined; the issue was concentrated on a platform configuration using a legacy event emitter code path."
+  },
+  {
+    "question": "Where was the bug concentrated?",
+    "answer": "it was concentrated in the new-handshake path — the deployment increased the proportion of new handshakes, causing the systems-reliability failure to become widespread.",
+    "golden_answer": "The instrumentation issues were concentrated on one platform configuration where a code path used a legacy event emitter."
+  },
+  {
+    "question": "Why were purchases unlinked?",
+    "answer": "purchases were unlinked because the legacy event emitter emitted purchase_completed events that lacked consistent linkage to earlier funnel events and often omitted the required event_id for reliable deduplication and linkage. additionally, the pipeline’s canonical_query-like normalization deduplicated distinct purchases (especially retries), collapsing them and breaking links to the stable order_id used for business reconciliation.",
+    "golden_answer": "Some clients emitted purchase_completed without a consistent linkage to earlier funnel events, breaking session-level funnel analysis."
+  },
+  {
+    "question": "Which normalization broke order counting?",
+    "answer": "the pipeline's canonical_query-like query normalization (used to deduplicate purchase_completed events) collapsed distinct purchases on retries and broke order counting.",
+    "golden_answer": "The pipeline deduplicated using a key that included canonical_query-like normalization—appropriate for search events, but inappropriate for purchase events; under retries, distinct purchase_completed could be collapsed into one, undercounting orders."
+  },
+  {
+    "question": "How can retries undercount orders?",
+    "answer": "retries can undercount orders when they amplify inbound traffic and new connection attempts (for example from automated retry logic), causing requests to fail or be dropped and reducing recorded successes; merchants should reconcile using their order identifier before retrying.",
+    "golden_answer": "Under specific retry behaviors, two distinct purchase_completed events can be deduplicated into one due to wrong dedup semantics, undercounting orders."
+  },
+  {
+    "question": "What inflated cart actions?",
+    "answer": "the pipeline's inconsistent deduplication of add_to_cart events inflated cart actions: when event_id was missing, duplicates weren't collapsed, boosting add_to_cart counts and affecting the auroralamp campaign's funnel.",
+    "golden_answer": "Duplicate add_to_cart events could inflate cart activity when event_id was missing, pushing the pipeline toward heuristic merging."
+  },
+  {
+    "question": "What caused split-brain dedupe?",
+    "answer": "split-brain dedupe was caused by the internal security configuration issue that interrupted the identity layer (gateway reported inability to establish secure sessions) and affected the payments api; restarts before routing was stabilized altered deduplication behavior, producing conflicting outcomes despite the deduplication key including event_id and event_name.",
+    "golden_answer": "Inconsistent presence of event_id meant some events were reliably deduplicated while others relied on heuristic merging, creating split-brain dedup behavior."
+  },
+  {
+    "question": "Why did privacy skew conversion rates?",
+    "answer": "because privacy-driven data minimization and pre-deployment privacy testing removed or restricted the specific fields and instrumentation used by the measurement plan’s standard funnel, the system undercounted or biased the tracked purchase_completed conversions. this skewed commerce’s primary metric (purchase conversion rate, which targets ≥10% relative uplift) and distorted experiment results and guardrail signals like refund rate and support contact rate.",
+    "golden_answer": "Sessions with consent_flag false suppressed certain events, but funnel analysis didn’t consistently exclude them. This made conversion rates misleading; correct approach is defining analysis-eligible sessions based on consent and instrumentation availability."
+  },
+  {
+    "question": "How define eligible sessions?",
+    "answer": "eligible sessions are those with consent_flag enabled (not suppressed): auroralamp builds the analysis-eligible sessions set by excluding suppressed sessions, using the session_id in the event schema (and deduplication key) so only sessions that emit events under consent are included.",
+    "golden_answer": "Define “analysis-eligible sessions” using consent_flag and instrumentation availability, then compute metrics only over that set; exclude suppressed sessions rather than treating them as drop-offs."
+  },
+  {
+    "question": "What's first debugging step?",
+    "answer": "first step: have the memory system retrieve the debugging playbook and link it to the observed symptom pattern (e.g., chart shifts, purchase drops, or duplicate events), avoiding use of raw user data.",
+    "golden_answer": "Validate schema compliance for each event type across platforms."
+  },
+  {
+    "question": "What check follows schema validation?",
+    "answer": "required-property checks — verifying that each event includes the required fields for its event type after schema conformance.",
+    "golden_answer": "Confirm required properties exist and have correct types; then verify event_id behavior for high-value events to avoid heuristic merging."
+  },
+  {
+    "question": "Which two IDs must purchases include?",
+    "answer": "purchases must include event_id (for reliable deduplication and linkage) and order_id (required by purchase_completed and used by support for reconciliation).",
+    "golden_answer": "event_id should be mandatory for high-value events, and purchase_completed must link to a stable order_id. order_id should be used for business reconciliation."
+  },
+  {
+    "question": "What should missing IDs trigger?",
+    "answer": "missing ids (e.g., event_id) should trigger explicit errors for high-value events and be recorded in the learning capture that documents missing signals during incidents.",
+    "golden_answer": "Missing event_id should trigger explicit errors rather than silent heuristic behavior/merging."
+  },
+  {
+    "question": "Why store pseudonymous user IDs?",
+    "answer": "to enable analytics and cross-event comparisons without collecting raw personal information: the minimal event schema requires a pseudonymous user_id and the playbook, analytics pipelines, and data exports use hashed/pseudonymous identifiers (not emails). this follows the data minimization guideline—avoiding raw personal info—and requires documenting why the user_id exists and who can access it.",
+    "golden_answer": "The minimal event schema uses pseudonymous user_id and forbids raw email/phone. If a stable identifier is needed, use a client-side salted hash."
+  },
+  {
+    "question": "What must never be sent raw?",
+    "answer": "raw pii (personally identifiable information) must never be sent raw in production events; when debugging share redacted samples instead.",
+    "golden_answer": "Do not send raw email addresses or phone numbers."
+  },
+  {
+    "question": "What hashing is recommended?",
+    "answer": "a client-side salted hash (i.e., generate a salted hash on the client for stable identifiers in the minimal event schema).",
+    "golden_answer": "Use a salted hash generated client-side when a stable identifier is needed."
+  },
+  {
+    "question": "What fields are always required?",
+    "answer": "the written-outcome fields — what was decided, what remains open, and who owns follow-up — are always required. these requirements are enforced by the pipeline's validation via required-property checks.",
+    "golden_answer": "Required fields include event_name, user_id (pseudonymous), session_id, platform, country, consent_flag, and event_id."
+  },
+  {
+    "question": "Which events define the funnel?",
+    "answer": "the funnel is defined by the standard funnel events: product_view, add_to_cart, checkout_started, and purchase_completed. the commerce funnel specifically includes the add_to_cart, checkout_started, and purchase_completed stages.",
+    "golden_answer": "product_view, add_to_cart, checkout_started, purchase_completed."
+  },
+  {
+    "question": "Which properties start checkout?",
+    "answer": "the checkout_started event requires the item_count and cart_value_usd properties, which are the required properties that start checkout in the commerce/standard funnel.",
+    "golden_answer": "checkout_started must include cart_value_usd and item_count."
+  },
+  {
+    "question": "What extra fields for non-USD?",
+    "answer": "the context does not specify any built-in non-usd fields — events require price_usd (add_to_cart, product_view) and total_usd (purchase_completed). if you need non-usd values, add custom typed fields (text, number, boolean, single-select, multi-select) on accounts/contacts or records to capture other currencies.",
+    "golden_answer": "When currency isn’t USD, include total_usd plus local currency totals."
+  },
+  {
+    "question": "Which landing page variants existed?",
+    "answer": "the campaign had two landing-page variants: an outdoor lifestyle (lifestyle imagery) page and an emergency preparedness (emergency resilience) page.",
+    "golden_answer": "One landing-page variant focused on lifestyle imagery; the other focused on emergency preparedness."
+  },
+  {
+    "question": "Which audience responded strongest?",
+    "answer": "preparedness-oriented audiences showed the strongest response to the auroralamp campaign.",
+    "golden_answer": "Preparedness-oriented audiences and households in storm-prone regions responded best."
+  },
+  {
+    "question": "What to photograph during install?",
+    "answer": "photograph the old thermostat faceplate wiring — capture all wire connections on the faceplate before removal when installing the smart thermostat x1.",
+    "golden_answer": "Remove the old thermostat faceplate and photograph wiring, then label wires (R, C, W, Y, G) before mounting the new base."
+  },
+  {
+    "question": "Which networks work for pairing?",
+    "answer": "both wi‑fi and bluetooth networks are used for pairing. bluetooth pairing mode triggers a crash after qr code scanning, so wi‑fi pairing is the suggested alternative (note: wi‑fi on some android devices requires a firmware update to prevent crashes).",
+    "golden_answer": "Pair in the app by scanning the QR code and choosing Wi‑Fi or Bluetooth; Wi‑Fi should be 2.4 GHz."
+  },
+  {
+    "question": "Why does pairing crash on Android?",
+    "answer": "pairing crashes on recent android because the bluetooth pairing mode triggers an app crash after qr code scanning on some devices when the wireless earbuds firmware is outdated. updating the earbuds firmware (or switching to wi‑fi pairing mode) can prevent the crash, and customer support may request pairing logs for troubleshooting.",
+    "golden_answer": "The ticket reports a crash after scanning QR and selecting Bluetooth pairing on a recent Android version. Workaround is switching to Wi‑Fi pairing and updating firmware; support asks for device model, OS/app version, and confirmation Bluetooth permission was granted."
+  },
+  {
+    "question": "What's workaround for pairing crashes?",
+    "answer": "update the device firmware (e.g., thermostat or wireless earbuds) to stabilize pairing and avoid android crashes; if bluetooth pairing crashes after the qr scan, use wi‑fi pairing mode instead or press the charging case pairing button to manually reset and start a new pairing session (firmware prioritizes the most recently connected device). if the issue continues, collect and send pairing logs to customer support for troubleshooting.",
+    "golden_answer": "Use Wi‑Fi pairing mode instead of Bluetooth and ensure firmware is updated; confirm Bluetooth permission if using Bluetooth."
+  },
+  {
+    "question": "What fixes wrong room temperature?",
+    "answer": "calibrate the temperature sensor through the companion app for the smart thermostat x1 to correct the wrong room temperature; this addresses the tagged temp_sensor_drift issue.",
+    "golden_answer": "Run sensor calibration in the app and compare against a stable reference thermometer; confirm HVAC power/wiring if heating/cooling doesn’t respond."
+  },
+  {
+    "question": "Why are energy dates shifted?",
+    "answer": "energy dates are shifted because usage segments were ordered incorrectly; when ordering semantics disagree, the energy report's segments are placed into the wrong daily aggregation buckets, causing the displayed usage to appear on shifted dates.",
+    "golden_answer": "The energy graph shows wrong dates when the client sends local timestamps while the backend expects normalized ordering based on a standard reference. Support requests event ordering value, device_timezone, and firmware_version to diagnose."
+  },
+  {
+    "question": "What info support requests for shifts?",
+    "answer": "support tickets request the app version, os version, device model, and confirmation that the bluetooth permission was granted.",
+    "golden_answer": "Provide raw event payload fields, including event ordering value, device_timezone, and firmware_version."
+  },
+  {
+    "question": "Which API path starts all calls?",
+    "answer": "the customer-facing request handling path starts all calls; it serves as the entry point and is separated from internal authorization, risk controls, and other internal workflows.",
+    "golden_answer": "The base API path is “/v1”."
+  },
+  {
+    "question": "What must webhook payload include?",
+    "answer": "webhook payloads must include the firmware_version to ensure reporting correctness. additionally, raw event payload fields include device_timezone and the event ordering value among other data.",
+    "golden_answer": "For reporting correctness, webhook event payloads must include a consistent event ordering field and firmware_version."
+  },
+  {
+    "question": "What triggers an RMA?",
+    "answer": "an rma is triggered when a unit is damaged; support performs an inspection to determine eligibility for replacement, repair, or refund and issues the rma accordingly.",
+    "golden_answer": "If temperature drift persists after using in-app sensor calibration and letting the sensor stabilize, support should request an RMA; internal tag TEMP_SENSOR_DRIFT."
+  },
+  {
+    "question": "Which city has 1.2 million residents?",
+    "answer": "none — the provided context does not specify any city with 1.2 million residents. harborview and the city hosting the city marathon have no population figures given.",
+    "golden_answer": "Harborview is the coastal city with 1.2 million residents."
+  },
+  {
+    "question": "What heat metric nearly doubles?",
+    "answer": "the number of extreme-heat days — measured as days above 95°F — nearly doubles (an increase in extreme-heat days is projected).",
+    "golden_answer": "Extreme-heat days above 95°F are projected to increase from roughly 20 to 45."
+  },
+  {
+    "question": "What drives peak demand rise?",
+    "answer": "air-conditioning load — amplified by an increase in extreme-heat days — drives an 18% rise in peak electricity demand.",
+    "golden_answer": "Peak electricity demand is projected to increase by 18% driven by air-conditioning load."
+  },
+  {
+    "question": "Which three microgrid sites get batteries?",
+    "answer": "the hospital, the water treatment facility (water plant), and the emergency operations center — these three critical sites share the 120 mwh of battery storage as part of the microgrid strategy to maintain essential load.",
+    "golden_answer": "120 MWh of battery storage is planned across three microgrid sites: hospital, water plant, and emergency operations center."
+  },
+  {
+    "question": "What framing repeats across storage docs?",
+    "answer": "the documents consistently frame storage using a short-duration vs long-duration framework — short-duration for peak management and brief disruptions, long-duration for extended interruptions or gaps.",
+    "golden_answer": "Both the climate report and storage-technology summary distinguish short-duration storage (brief peak coverage) from long-duration energy storage (extended gaps)."
+  },
+  {
+    "question": "What household items are urged?",
+    "answer": "households are urged to maintain battery-powered radios, solar lanterns or other emergency lighting, water storage, and general emergency supplies; retailers run product campaigns to promote these recommended preparedness items.",
+    "golden_answer": "Households are encouraged to keep emergency lighting, battery-powered radios, and water storage."
+  },
+  {
+    "question": "What should messaging avoid?",
+    "answer": "messaging should avoid firing repeated sends as a workaround for delayed delivery confirmations and avoid making commitments in chat; instead clients should poll for delivery status using the message identifier and confirm eligibility through the standard credit request workflow.",
+    "golden_answer": "Public messaging should avoid fear-driven narratives and emphasize practical preparation and neighbor-to-neighbor support."
+  },
+  {
+    "question": "What product fits preparedness pitch?",
+    "answer": "the compact solar lantern — for example the auroralamp — fits the preparedness pitch. retailers frequently promote compact solar lantern products to support household preparedness, and preparedness-oriented audiences showed the strongest response to the auroralamp campaign.",
+    "golden_answer": "The climate report notes retailers often promote compact solar lantern products and resilience kits based on preparedness recommendations; the AuroraLamp campaign also positioned a lantern for reliability during grid interruptions and emergency preparedness audiences."
+  },
+  {
+    "question": "Why did water demand spike late?",
+    "answer": "water demand spiked late because households were topping up stored water later in the day as pumping capacity was constrained. air-conditioning-driven extreme heat raised peak electricity demand by 18%, stressing the grid, increasing queue depth for pumping and delaying normal water delivery timing.",
+    "golden_answer": "Marathon results note a warming trend increased demand at hydration stations late in the course; organizers deployed additional water and medical support near the finish area."
+  },
+  {
+    "question": "Where does the race finish?",
+    "answer": "the race finishes at harbor park.",
+    "golden_answer": "The course finishes at Harbor Park, and organizers added extra water/medical support near the finish area due to late-course heat."
+  }
+]

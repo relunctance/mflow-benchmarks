@@ -1,0 +1,154 @@
+{
+  "evolving": {
+    "mflow": {
+      "topk5_gpt5mini": {
+        "Human-like Correctness": 0.958,
+        "Human-like Correctness Error": [
+          0.921,
+          0.988
+        ],
+        "DeepEval Correctness": 0.636,
+        "DeepEval Correctness Error": [
+          0.613,
+          0.659
+        ]
+      },
+      "topk5_gpt54": {
+        "Human-like Correctness": 0.964,
+        "Human-like Correctness Error": [
+          0.931,
+          0.988
+        ],
+        "DeepEval Correctness": 0.655,
+        "DeepEval Correctness Error": [
+          0.636,
+          0.674
+        ]
+      },
+      "topk10_gpt5mini": {
+        "Human-like Correctness": 0.968,
+        "Human-like Correctness Error": [
+          0.94,
+          0.989
+        ],
+        "DeepEval Correctness": 0.639,
+        "DeepEval Correctness Error": [
+          0.616,
+          0.66
+        ]
+      },
+      "topk10_gpt54": {
+        "Human-like Correctness": 0.977,
+        "Human-like Correctness Error": [
+          0.952,
+          0.994
+        ],
+        "DeepEval Correctness": 0.654,
+        "DeepEval Correctness Error": [
+          0.634,
+          0.675
+        ]
+      }
+    },
+    "cognee": {
+      "topk5_gpt5mini": {
+        "Human-like Correctness": 0.886,
+        "Human-like Correctness Error": [
+          0.831,
+          0.934
+        ],
+        "DeepEval Correctness": 0.604,
+        "DeepEval Correctness Error": [
+          0.573,
+          0.633
+        ]
+      },
+      "topk5_gpt54": {
+        "Human-like Correctness": 0.896,
+        "Human-like Correctness Error": [
+          0.844,
+          0.944
+        ],
+        "DeepEval Correctness": 0.625,
+        "DeepEval Correctness Error": [
+          0.593,
+          0.655
+        ]
+      },
+      "topk10_gpt5mini": {
+        "Human-like Correctness": 0.912,
+        "Human-like Correctness Error": [
+          0.867,
+          0.95
+        ],
+        "DeepEval Correctness": 0.635,
+        "DeepEval Correctness Error": [
+          0.607,
+          0.662
+        ]
+      },
+      "topk10_gpt54": {
+        "Human-like Correctness": 0.93,
+        "Human-like Correctness Error": [
+          0.889,
+          0.964
+        ],
+        "DeepEval Correctness": 0.628,
+        "DeepEval Correctness Error": [
+          0.6,
+          0.654
+        ]
+      }
+    },
+    "graphiti": {
+      "topk5_gpt5mini": {
+        "Human-like Correctness": 0.663,
+        "Human-like Correctness Error": [
+          0.583,
+          0.737
+        ],
+        "DeepEval Correctness": 0.469,
+        "DeepEval Correctness Error": [
+          0.435,
+          0.502
+        ]
+      },
+      "topk5_gpt54": {
+        "Human-like Correctness": 0.63,
+        "Human-like Correctness Error": [
+          0.552,
+          0.703
+        ],
+        "DeepEval Correctness": 0.468,
+        "DeepEval Correctness Error": [
+          0.437,
+          0.5
+        ]
+      },
+      "topk10_gpt5mini": {
+        "Human-like Correctness": 0.692,
+        "Human-like Correctness Error": [
+          0.618,
+          0.763
+        ],
+        "DeepEval Correctness": 0.504,
+        "DeepEval Correctness Error": [
+          0.469,
+          0.539
+        ]
+      },
+      "topk10_gpt54": {
+        "Human-like Correctness": 0.684,
+        "Human-like Correctness Error": [
+          0.61,
+          0.756
+        ],
+        "DeepEval Correctness": 0.496,
+        "DeepEval Correctness Error": [
+          0.465,
+          0.527
+        ]
+      }
+    }
+  }
+}
