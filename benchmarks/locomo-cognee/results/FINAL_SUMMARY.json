@@ -1,0 +1,414 @@
+{
+  "benchmark": "LOCOMO-10",
+  "system": "Cognee Cloud",
+  "run_id": "r4",
+  "date": "2026-04-05",
+  "category_mapping": {
+    "source": "snap-research/locomo Issue #27, PR #8",
+    "mapping": {
+      "1": "Multi-hop",
+      "2": "Temporal",
+      "3": "Open-domain",
+      "4": "Single-hop",
+      "5": "Adversarial (excluded)"
+    }
+  },
+  "configuration": {
+    "system": "Cognee Cloud API v1",
+    "search_type": "CHUNKS",
+    "llm_answer": "gpt-5-mini (temperature not set — reasoning model)",
+    "llm_judge": "gpt-4o-mini (temperature=0)",
+    "embedding": "Cognee Cloud default",
+    "top_k": 10,
+    "dataset_prefix": "locomo_r4",
+    "cognify_mode": "default (non-temporal)",
+    "chunk_strategy": "per-session upload → TextChunker (paragraph-based)"
+  },
+  "overall": {
+    "questions_evaluated": 1540,
+    "correct": 1223,
+    "score_pct": 79.42,
+    "avg_bleu": 0.2932,
+    "avg_f1": 0.3865
+  },
+  "per_category": {
+    "Multi-hop": {
+      "cat_number": 1,
+      "correct": 222,
+      "total": 282,
+      "score_pct": 78.72,
+      "avg_bleu": 0.2565,
+      "avg_f1": 0.331
+    },
+    "Temporal": {
+      "cat_number": 2,
+      "correct": 235,
+      "total": 321,
+      "score_pct": 73.21,
+      "avg_bleu": 0.3116,
+      "avg_f1": 0.4148
+    },
+    "Open-domain": {
+      "cat_number": 3,
+      "correct": 60,
+      "total": 96,
+      "score_pct": 62.5,
+      "avg_bleu": 0.1273,
+      "avg_f1": 0.177
+    },
+    "Single-hop": {
+      "cat_number": 4,
+      "correct": 706,
+      "total": 841,
+      "score_pct": 83.95,
+      "avg_bleu": 0.3174,
+      "avg_f1": 0.4182
+    }
+  },
+  "per_conversation": [
+    {
+      "conv_idx": 0,
+      "speakers": "Caroline & Melanie",
+      "questions_evaluated": 152,
+      "correct": 125,
+      "score_pct": 82.2,
+      "avg_bleu": 0.3077,
+      "avg_f1": 0.3944,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 25,
+          "total": 32,
+          "score_pct": 78.1
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 28,
+          "total": 37,
+          "score_pct": 75.7
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 11,
+          "total": 13,
+          "score_pct": 84.6
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 61,
+          "total": 70,
+          "score_pct": 87.1
+        }
+      }
+    },
+    {
+      "conv_idx": 1,
+      "speakers": "Jon & Gina",
+      "questions_evaluated": 81,
+      "correct": 67,
+      "score_pct": 82.7,
+      "avg_bleu": 0.2668,
+      "avg_f1": 0.3811,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 10,
+          "total": 11,
+          "score_pct": 90.9
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 17,
+          "total": 26,
+          "score_pct": 65.4
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 40,
+          "total": 44,
+          "score_pct": 90.9
+        }
+      }
+    },
+    {
+      "conv_idx": 2,
+      "speakers": "John & Maria",
+      "questions_evaluated": 152,
+      "correct": 120,
+      "score_pct": 78.9,
+      "avg_bleu": 0.322,
+      "avg_f1": 0.4177,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 26,
+          "total": 31,
+          "score_pct": 83.9
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 18,
+          "total": 27,
+          "score_pct": 66.7
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 6,
+          "total": 8,
+          "score_pct": 75.0
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 70,
+          "total": 86,
+          "score_pct": 81.4
+        }
+      }
+    },
+    {
+      "conv_idx": 3,
+      "speakers": "Joanna & Nate",
+      "questions_evaluated": 199,
+      "correct": 158,
+      "score_pct": 79.4,
+      "avg_bleu": 0.314,
+      "avg_f1": 0.3853,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 25,
+          "total": 37,
+          "score_pct": 67.6
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 33,
+          "total": 40,
+          "score_pct": 82.5
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 4,
+          "total": 11,
+          "score_pct": 36.4
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 96,
+          "total": 111,
+          "score_pct": 86.5
+        }
+      }
+    },
+    {
+      "conv_idx": 4,
+      "speakers": "Tim & John",
+      "questions_evaluated": 178,
+      "correct": 130,
+      "score_pct": 73.0,
+      "avg_bleu": 0.2731,
+      "avg_f1": 0.3528,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 25,
+          "total": 31,
+          "score_pct": 80.6
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 15,
+          "total": 26,
+          "score_pct": 57.7
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 6,
+          "total": 14,
+          "score_pct": 42.9
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 84,
+          "total": 107,
+          "score_pct": 78.5
+        }
+      }
+    },
+    {
+      "conv_idx": 5,
+      "speakers": "Audrey & Andrew",
+      "questions_evaluated": 123,
+      "correct": 95,
+      "score_pct": 77.2,
+      "avg_bleu": 0.2949,
+      "avg_f1": 0.397,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 24,
+          "total": 30,
+          "score_pct": 80.0
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 19,
+          "total": 24,
+          "score_pct": 79.2
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 3,
+          "total": 7,
+          "score_pct": 42.9
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 49,
+          "total": 62,
+          "score_pct": 79.0
+        }
+      }
+    },
+    {
+      "conv_idx": 6,
+      "speakers": "James & John",
+      "questions_evaluated": 150,
+      "correct": 123,
+      "score_pct": 82.0,
+      "avg_bleu": 0.3116,
+      "avg_f1": 0.4163,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 17,
+          "total": 20,
+          "score_pct": 85.0
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 23,
+          "total": 34,
+          "score_pct": 67.6
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 8,
+          "total": 13,
+          "score_pct": 61.5
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 75,
+          "total": 83,
+          "score_pct": 90.4
+        }
+      }
+    },
+    {
+      "conv_idx": 7,
+      "speakers": "Deborah & Jolene",
+      "questions_evaluated": 191,
+      "correct": 157,
+      "score_pct": 82.2,
+      "avg_bleu": 0.2787,
+      "avg_f1": 0.3795,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 17,
+          "total": 21,
+          "score_pct": 81.0
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 34,
+          "total": 42,
+          "score_pct": 81.0
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 8,
+          "total": 10,
+          "score_pct": 80.0
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 98,
+          "total": 118,
+          "score_pct": 83.1
+        }
+      }
+    },
+    {
+      "conv_idx": 8,
+      "speakers": "Evan & Sam",
+      "questions_evaluated": 156,
+      "correct": 124,
+      "score_pct": 79.5,
+      "avg_bleu": 0.2778,
+      "avg_f1": 0.3818,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 30,
+          "total": 37,
+          "score_pct": 81.1
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 24,
+          "total": 33,
+          "score_pct": 72.7
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 8,
+          "total": 13,
+          "score_pct": 61.5
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 62,
+          "total": 73,
+          "score_pct": 84.9
+        }
+      }
+    },
+    {
+      "conv_idx": 9,
+      "speakers": "Calvin & Dave",
+      "questions_evaluated": 158,
+      "correct": 124,
+      "score_pct": 78.5,
+      "avg_bleu": 0.2754,
+      "avg_f1": 0.3677,
+      "per_category": {
+        "Multi-hop": {
+          "cat_number": 1,
+          "correct": 23,
+          "total": 32,
+          "score_pct": 71.9
+        },
+        "Temporal": {
+          "cat_number": 2,
+          "correct": 24,
+          "total": 32,
+          "score_pct": 75.0
+        },
+        "Open-domain": {
+          "cat_number": 3,
+          "correct": 6,
+          "total": 7,
+          "score_pct": 85.7
+        },
+        "Single-hop": {
+          "cat_number": 4,
+          "correct": 71,
+          "total": 87,
+          "score_pct": 81.6
+        }
+      }
+    }
+  ]
+}

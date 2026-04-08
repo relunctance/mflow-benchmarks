@@ -1,0 +1,1606 @@
+{
+  "4": [
+    {
+      "question": "what are John's goals with regards to his basketball career?",
+      "answer": "improve shooting percentage, win a championship",
+      "response": "Win a championship; help others off-court.",
+      "category": "1",
+      "bleu_score": 0.375,
+      "f1_score": 0.3333,
+      "llm_score": 0
+    },
+    {
+      "question": "What are John's goals for his career that are not related to his basketball skills?",
+      "answer": "get endorsements, build his brand, do charity work",
+      "response": "Endorsements, personal branding, charity work",
+      "category": "1",
+      "bleu_score": 0.4653,
+      "f1_score": 0.4615,
+      "llm_score": 1
+    },
+    {
+      "question": "What items does John collect?",
+      "answer": "sneakers, fantasy movie DVDs, jerseys",
+      "response": "He collects sneakers and basketball jerseys.",
+      "category": "1",
+      "bleu_score": 0.2857,
+      "f1_score": 0.3636,
+      "llm_score": 1
+    },
+    {
+      "question": "Would Tim enjoy reading books by C. S. Lewis or John Greene?",
+      "answer": "C. S.Lewis",
+      "response": "Yes C.S. Lewis; not John Green",
+      "category": "3",
+      "bleu_score": 0,
+      "f1_score": 0.4,
+      "llm_score": 1
+    },
+    {
+      "question": "What books has Tim read?",
+      "answer": "Harry Potter, Game of Thrones, the Name of the Wind, The Alchemist, The Hobbit, A Dance with Dragons, and the Wheel of Time.",
+      "response": "Game of Thrones; A Dance with Dragons; The Name of the Wind; Harry Potter",
+      "category": "1",
+      "bleu_score": 0.3833,
+      "f1_score": 0.6207,
+      "llm_score": 1
+    },
+    {
+      "question": "Based on Tim's collections, what is a shop that he would enjoy visiting in New York city?",
+      "answer": "House of MinaLima",
+      "response": "A fantasy specialty bookstore in NYC.",
+      "category": "3",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "In which month's game did John achieve a career-high score in points?",
+      "answer": "June 2023",
+      "response": "He achieved it in July 2023.",
+      "category": "2",
+      "bleu_score": 0.1429,
+      "f1_score": 0.25,
+      "llm_score": 0
+    },
+    {
+      "question": "Which geographical locations has Tim been to?",
+      "answer": "California, London, the Smoky Mountains",
+      "response": "Has been to London and California.",
+      "category": "1",
+      "bleu_score": 0.2857,
+      "f1_score": 0.3636,
+      "llm_score": 1
+    },
+    {
+      "question": "Which outdoor gear company likely signed up John for an endorsement deal?",
+      "answer": "Under Armour",
+      "response": "He likely signed with Nike.",
+      "category": "3",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "Which endorsement deals has John been offered?",
+      "answer": "basketball shoes and gear deal with Nike, potential sponsorship with Gatorade, Moxie a popular beverage company, outdoor gear company",
+      "response": "Nike, Gatorade, and outdoor gear.",
+      "category": "1",
+      "bleu_score": 0.1521,
+      "f1_score": 0.4762,
+      "llm_score": 1
+    },
+    {
+      "question": "When was John in Seattle for a game?",
+      "answer": "early August, 2023",
+      "response": "John played in Seattle August 2023.",
+      "category": "2",
+      "bleu_score": 0.2857,
+      "f1_score": 0.4444,
+      "llm_score": 1
+    },
+    {
+      "question": "What sports does John like besides basketball?",
+      "answer": "surfing",
+      "response": "He likes surfing and hiking.",
+      "category": "1",
+      "bleu_score": 0.1667,
+      "f1_score": 0.3333,
+      "llm_score": 1
+    },
+    {
+      "question": "What year did John start surfing?",
+      "answer": "2018",
+      "response": "He started surfing in 2018.",
+      "category": "2",
+      "bleu_score": 0.1667,
+      "f1_score": 0.3333,
+      "llm_score": 1
+    },
+    {
+      "question": "What does Tim do to escape reality?",
+      "answer": "Read fantasy books.",
+      "response": "He reads fantasy novels to escape.",
+      "category": "1",
+      "bleu_score": 0.2857,
+      "f1_score": 0.2222,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of writing does Tim do?",
+      "answer": "comments on favorite books in a fantasy literature forum, articles on fantasy novels, studying characters, themes, and making book recommendations, writing a fantasy novel",
+      "response": "He writes articles about fantasy novels.",
+      "category": "1",
+      "bleu_score": 0.0185,
+      "f1_score": 0.2308,
+      "llm_score": 1
+    },
+    {
+      "question": "Who is Anthony?",
+      "answer": "likely John's friend, colleague or family",
+      "response": "John's friend at a charity event",
+      "category": "3",
+      "bleu_score": 0.3715,
+      "f1_score": 0.3333,
+      "llm_score": 1
+    },
+    {
+      "question": "After how many weeks did Tim reconnect with the fellow Harry Potter fan from California?",
+      "answer": "three weeks",
+      "response": "They reconnected four weeks later.",
+      "category": "2",
+      "bleu_score": 0.1667,
+      "f1_score": 0.2857,
+      "llm_score": 0
+    },
+    {
+      "question": "How many games has John mentioned winning?",
+      "answer": "6",
+      "response": "John mentioned three games he won.",
+      "category": "1",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What authors has Tim read books from?",
+      "answer": "J.K. Rowling, R.R. Martin, Patrick Rothfuss, Paulo Coelho, and J. R. R. Tolkien.",
+      "response": "Patrick Rothfuss; George R. R. Martin",
+      "category": "1",
+      "bleu_score": 0.1286,
+      "f1_score": 0.375,
+      "llm_score": 0
+    },
+    {
+      "question": "What is a prominent charity organization that John might want to work with and why?",
+      "answer": "Good Sports, because they work with Nike, Gatorade, and Under Armour and they aim toprovide youth sports opportunities for kids ages 3-18 in high-need communities.",
+      "response": "Youth sports nonprofit for underserved kids.",
+      "category": "3",
+      "bleu_score": 0.0308,
+      "f1_score": 0.2857,
+      "llm_score": 0
+    },
+    {
+      "question": "Which city was John in before traveling to Chicago?",
+      "answer": "Seattle",
+      "response": "Unknown. No fragment mentions Chicago.",
+      "category": "2",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "Which US cities does John mention visiting to Tim?",
+      "answer": "Seattle, Chicago, New York",
+      "response": "New York City and Seattle, Washington",
+      "category": "1",
+      "bleu_score": 0.5714,
+      "f1_score": 0.6,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John meet with his teammates after returning from Chicago?",
+      "answer": "August 15, 2023",
+      "response": "Met teammates on August 15, 2023.",
+      "category": "2",
+      "bleu_score": 0.5,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "When is Tim attending a book conference?",
+      "answer": "September 2023",
+      "response": "Unknown \u2014 no mention in fragments.",
+      "category": "2",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "Where was John between August 11 and August 15 2023?",
+      "answer": "Chicago",
+      "response": "Unknown \u2014 location not specified in fragments",
+      "category": "2",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What similar sports collectible do Tim and John own?",
+      "answer": "signed basketball",
+      "response": "They both own autographed basketballs.",
+      "category": "1",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "Which TV series does Tim mention watching?",
+      "answer": "That, Wheel of Time",
+      "response": "The Wheel of Time TV series",
+      "category": "1",
+      "bleu_score": 0.5,
+      "f1_score": 0.6,
+      "llm_score": 1
+    },
+    {
+      "question": "Which popular time management technique does Tim use to prepare for exams?",
+      "answer": "Pomodoro technique",
+      "response": "25 minutes on, 5 minutes off",
+      "category": "3",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "Which popular music composer's tunes does Tim enjoy playing on the piano?",
+      "answer": "John Williams",
+      "response": "John Williams' Harry Potter film themes",
+      "category": "3",
+      "bleu_score": 0.2857,
+      "f1_score": 0.25,
+      "llm_score": 1
+    },
+    {
+      "question": "What schools did John play basketball in and how many years was he with his team during high school?",
+      "answer": "Middle school, high school, and college and he was with his high school team for 4 years.",
+      "response": "Local league, middle, high, college; Unknown",
+      "category": "1",
+      "bleu_score": 0.1839,
+      "f1_score": 0.2105,
+      "llm_score": 0
+    },
+    {
+      "question": "Which cities has John been to?",
+      "answer": "Seattle, Chicago, New York, and Paris.",
+      "response": "New York City, Paris, and Seattle",
+      "category": "1",
+      "bleu_score": 0.6815,
+      "f1_score": 0.8333,
+      "llm_score": 1
+    },
+    {
+      "question": "What month did Tim plan on going to Universal Studios?",
+      "answer": "September, 2023",
+      "response": "He planned to go in September.",
+      "category": "2",
+      "bleu_score": 0.1429,
+      "f1_score": 0.25,
+      "llm_score": 1
+    },
+    {
+      "question": "Which US states might Tim be in during September 2023 based on his plans of visiting Universal Studios?",
+      "answer": "California or Florida",
+      "response": "California or Florida \u2014 Universal Studios trip",
+      "category": "3",
+      "bleu_score": 0.4286,
+      "f1_score": 0.6,
+      "llm_score": 1
+    },
+    {
+      "question": "When does John plan on traveling with his team on a team trip?",
+      "answer": "October, 2023",
+      "response": "Team trip scheduled for October 2023.",
+      "category": "2",
+      "bleu_score": 0.2857,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "What could John do after his basketball career?",
+      "answer": "become a basketball coach since he likes giving back and leadership",
+      "response": "Start charity helping disadvantaged kids.",
+      "category": "3",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What outdoor activities does John enjoy?",
+      "answer": "Hiking, surfing",
+      "response": "Hiking, surfing, exploring nature spots",
+      "category": "1",
+      "bleu_score": 0.4286,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "Who is Tim and John's favorite basketball player?",
+      "answer": "LeBron James",
+      "response": "Their favorite player is LeBron James.",
+      "category": "1",
+      "bleu_score": 0.2857,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "Which week did Tim visit the UK for the Harry Potter Conference?",
+      "answer": "The week before October 13th, 2023.",
+      "response": "Week of November 10, 2023.",
+      "category": "2",
+      "bleu_score": 0.4954,
+      "f1_score": 0.3636,
+      "llm_score": 0
+    },
+    {
+      "question": "which country has Tim visited most frequently in his travels?",
+      "answer": "UK",
+      "response": "United Kingdom \u2014 Tim visited it twice.",
+      "category": "1",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What year did Tim go to the Smoky Mountains?",
+      "answer": "2022",
+      "response": "He visited Smoky Mountains in 2023",
+      "category": "2",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "Has Tim been to North Carolina and/or Tennesee states in the US?",
+      "answer": "Yes",
+      "response": "Yes \u2014 visited the Smoky Mountains (TN/NC)",
+      "category": "2",
+      "bleu_score": 0.1111,
+      "f1_score": 0.25,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of fiction stories does Tim write?",
+      "answer": "Fantasy stories with plot twists",
+      "response": "Fantasy novels and magical world stories",
+      "category": "1",
+      "bleu_score": 0.3333,
+      "f1_score": 0.3636,
+      "llm_score": 1
+    },
+    {
+      "question": "What has John cooked?",
+      "answer": "Soup, a slow cooker meal, and honey garlic chicken with roasted veg.",
+      "response": "Sage soup and honey-garlic chicken",
+      "category": "1",
+      "bleu_score": 0.0812,
+      "f1_score": 0.3529,
+      "llm_score": 1
+    },
+    {
+      "question": "What does John like about Lebron James?",
+      "answer": "His heart, determination, skills, and leadership.",
+      "response": "His skills, leadership, work ethic, determination.",
+      "category": "1",
+      "bleu_score": 0.8,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John and his wife go on a European vacation?",
+      "answer": "November, 2023.",
+      "response": "They left in early November 2023.",
+      "category": "2",
+      "bleu_score": 0.4286,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "Which country was Tim visiting in the second week of November?",
+      "answer": "UK",
+      "response": "He was visiting the United Kingdom.",
+      "category": "2",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "Where was Tim in the week before 16 November 2023?",
+      "answer": "UK",
+      "response": "In the UK visiting a castle",
+      "category": "2",
+      "bleu_score": 0.1667,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John get married at a greenhouse?",
+      "answer": "last week of September 2023",
+      "response": "Week before October 2, 2023.",
+      "category": "2",
+      "bleu_score": 0.2857,
+      "f1_score": 0.4,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John get an ankle injury in 2023?",
+      "answer": "around November 16, 2023",
+      "response": "He injured it in mid-November 2023.",
+      "category": "1",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2,
+      "llm_score": 1
+    },
+    {
+      "question": "How many times has John injured his ankle?",
+      "answer": "two times",
+      "response": "He injured his ankle once.",
+      "category": "1",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "Which book was John reading during his recovery from an ankle injury?",
+      "answer": "The Alchemist",
+      "response": "He was reading The Alchemist.",
+      "category": "1",
+      "bleu_score": 0.3333,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of yoga for building core strength might John benefit from?",
+      "answer": "Hatha Yoga",
+      "response": "Balance-focused yoga like Warrior II",
+      "category": "3",
+      "bleu_score": 0.2,
+      "f1_score": 0.2857,
+      "llm_score": 0
+    },
+    {
+      "question": "What does John do to supplement his basketball training?",
+      "answer": "Yoga, strength training",
+      "response": "He does daily physical therapy exercises.",
+      "category": "1",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What other exercises can help John with his basketball performance?",
+      "answer": "Sprinting, long-distance running, and boxing.",
+      "response": "Shooting practice, scrimmages, and jogging.",
+      "category": "3",
+      "bleu_score": 0.5,
+      "f1_score": 0.2,
+      "llm_score": 0
+    },
+    {
+      "question": "When did John take a trip to the Rocky Mountains?",
+      "answer": "2022",
+      "response": "John took it in 2022.",
+      "category": "2",
+      "bleu_score": 0.1667,
+      "f1_score": 0.3333,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John start playing professionally?",
+      "answer": "May, 2023",
+      "response": "About December 2022, just under year",
+      "category": "2",
+      "bleu_score": 0.1429,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "When did Tim start playing the violin?",
+      "answer": "August 2023",
+      "response": "Started violin in December 2023",
+      "category": "2",
+      "bleu_score": 0.2,
+      "f1_score": 0.2857,
+      "llm_score": 0
+    },
+    {
+      "question": "What instruments does Tim play?",
+      "answer": "piano, violin",
+      "response": "Plays piano; learning violin now.",
+      "category": "1",
+      "bleu_score": 0.2857,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John attend the Harry Potter trivia?",
+      "answer": "August 2023.",
+      "response": "In August 2023 at a charity.",
+      "category": "2",
+      "bleu_score": 0.4286,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "Which career-high performances did John achieve in 2023?",
+      "answer": "highest point score, highest assist",
+      "response": "Scored 40 points; career-high assists.",
+      "category": "1",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John achieve a career-high assist performance?",
+      "answer": "December 11, 2023",
+      "response": "December 8, 2023, the previous Friday",
+      "category": "2",
+      "bleu_score": 0.375,
+      "f1_score": 0.4444,
+      "llm_score": 0
+    },
+    {
+      "question": "What books has John read?",
+      "answer": "inpsiring book on dreaming big, The Alchemist, fantasy series, non-fiction books on personal development, Dune",
+      "response": "He's read Dune and The Alchemist.",
+      "category": "1",
+      "bleu_score": 0.0948,
+      "f1_score": 0.3,
+      "llm_score": 1
+    },
+    {
+      "question": "What does John do to share his knowledge?",
+      "answer": "gives seminars, mentors younger players.",
+      "response": "He mentors younger players on team.",
+      "category": "1",
+      "bleu_score": 0.5714,
+      "f1_score": 0.5455,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John organize a basketball camp for kids?",
+      "answer": "summer 2023",
+      "response": "Unknown. No fragment mentions a camp.",
+      "category": "2",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "Which month was John in Italy?",
+      "answer": "December, 2023",
+      "response": "John was in Italy in December.",
+      "category": "2",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "What fantasy movies does Tim like?",
+      "answer": "Lord of the Rings, Harry Potter, and Star Wars.",
+      "response": "Star Wars, LOTR, and Harry Potter",
+      "category": "1",
+      "bleu_score": 0.5307,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What is a Star Wars book that Tim might enjoy?",
+      "answer": "Star Wars: Jedi Apprentice by Judy Blundell and David Farland. It is a highly rated and immersive series about his favorite movies.",
+      "response": "Unknown \u2014 no Star Wars book mentioned",
+      "category": "3",
+      "bleu_score": 0.0218,
+      "f1_score": 0.0714,
+      "llm_score": 0
+    },
+    {
+      "question": "What would be a good hobby related to his travel dreams for Tim to pick up?",
+      "answer": "Writing a travel blog.",
+      "response": "Learn a new language for travel",
+      "category": "3",
+      "bleu_score": 0.3333,
+      "f1_score": 0.4,
+      "llm_score": 0
+    },
+    {
+      "question": "What day did Tim get into his study abroad program?",
+      "answer": "Januarty 5, 2024",
+      "response": "Accepted Friday, January 5, 2024.",
+      "category": "2",
+      "bleu_score": 0.375,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "When will Tim leave for Ireland?",
+      "answer": "February, 2024",
+      "response": "He leaves in February 2024.",
+      "category": "2",
+      "bleu_score": 0.3333,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "Which Star Wars-related locations would Tim enjoy during his visit to Ireland?",
+      "answer": "Skellig Michael, Malin Head, Loop Head, Ceann Sib\u00e9al, and Brow Head because they are Star Wars filming locations.",
+      "response": "No Star Wars sites; Galway, Cliffs",
+      "category": "3",
+      "bleu_score": 0.0575,
+      "f1_score": 0.1818,
+      "llm_score": 0
+    },
+    {
+      "question": "Which team did John sign with on 21 May, 2023?",
+      "answer": "The Minnesota Wolves",
+      "response": "He signed with the Minnesota Wolves.",
+      "category": "4",
+      "bleu_score": 0.4286,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What is John's position on the team he signed with?",
+      "answer": "shooting guard",
+      "response": "Shooting guard for the Minnesota Wolves.",
+      "category": "4",
+      "bleu_score": 0.2857,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "What challenge did John encounter during pre-season training?",
+      "answer": "fitting into the new team's style of play",
+      "response": "Fitting into the new team's style.",
+      "category": "4",
+      "bleu_score": 0.7722,
+      "f1_score": 0.8571,
+      "llm_score": 1
+    },
+    {
+      "question": "What aspects of the Harry Potter universe will be discussed in John's fan project collaborations?",
+      "answer": "characters, spells, magical creatures",
+      "response": "Characters, spells, and magical creatures.",
+      "category": "4",
+      "bleu_score": 0.75,
+      "f1_score": 0.8889,
+      "llm_score": 1
+    },
+    {
+      "question": "What forum did Tim join recently?",
+      "answer": "fantasy literature forum",
+      "response": "He joined a fantasy literature forum.",
+      "category": "4",
+      "bleu_score": 0.4286,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of picture did Tim share as part of their Harry Potter book collection?",
+      "answer": "MinaLima's creation from the Harry Potter films",
+      "response": "A MinaLima print from Harry Potter",
+      "category": "4",
+      "bleu_score": 0.4777,
+      "f1_score": 0.4615,
+      "llm_score": 1
+    },
+    {
+      "question": "What was the highest number of points John scored in a game recently?",
+      "answer": "40 points",
+      "response": "He scored 40 points, career-high",
+      "category": "4",
+      "bleu_score": 0.3333,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "What did John celebrate at a restaurant with teammates?",
+      "answer": "a tough win",
+      "response": "Scoring 40 points and winning",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of deals did John sign with Nike and Gatorade?",
+      "answer": "basketball shoe and gear deal with Nike, potential sponsorship deal with Gatorade",
+      "response": "Nike: basketball shoe/gear; Gatorade: potential sponsorship",
+      "category": "4",
+      "bleu_score": 0.3562,
+      "f1_score": 0.375,
+      "llm_score": 1
+    },
+    {
+      "question": "Which city is John excited to have a game at?",
+      "answer": "Seattle",
+      "response": "He's excited to play in Seattle.",
+      "category": "4",
+      "bleu_score": 0.125,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "How long has John been surfing?",
+      "answer": "five years",
+      "response": "He started surfing five years ago.",
+      "category": "4",
+      "bleu_score": 0.2857,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "How does John feel while surfing?",
+      "answer": "super exciting and free-feeling",
+      "response": "Feels excited, free, and unreal",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2222,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of articles has Tim been writing about for the online magazine?",
+      "answer": "different fantasy novels, characters, themes, and book recommendations",
+      "response": "Analyzing fantasy novels' characters and themes",
+      "category": "4",
+      "bleu_score": 0.4034,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "Which two fantasy novels does Tim particularly enjoy writing about?",
+      "answer": "Harry Potter and Game of Thrones",
+      "response": "Harry Potter and Game of Thrones",
+      "category": "4",
+      "bleu_score": 1.0,
+      "f1_score": 1.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What did Anthony and John end up playing during the charity event?",
+      "answer": "an intense Harry Potter trivia contest",
+      "response": "Unknown \u2014 Anthony not mentioned anywhere.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What did John share with the person he skyped about?",
+      "answer": "Characters from Harry Potter",
+      "response": "Characters and possible collaboration were discussed.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2,
+      "llm_score": 1
+    },
+    {
+      "question": "How did John describe the team bond?",
+      "answer": "Awesome",
+      "response": "Awesome and like a family.",
+      "category": "4",
+      "bleu_score": 0.1667,
+      "f1_score": 0.3333,
+      "llm_score": 1
+    },
+    {
+      "question": "How did John get introduced to basketball?",
+      "answer": "Dad signed him up for a local league",
+      "response": "Signed up for league by dad",
+      "category": "4",
+      "bleu_score": 0.5971,
+      "f1_score": 0.7143,
+      "llm_score": 1
+    },
+    {
+      "question": "What is John's number one goal in his basketball career?",
+      "answer": "Winning a championship",
+      "response": "Winning a championship is his goal",
+      "category": "4",
+      "bleu_score": 0.5,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What organization is John teaming up with for his charity work?",
+      "answer": "A local organization helping disadvantaged kids with sports and school",
+      "response": "A local organization helping disadvantaged kids",
+      "category": "4",
+      "bleu_score": 0.5134,
+      "f1_score": 0.75,
+      "llm_score": 1
+    },
+    {
+      "question": "When did John meet back up with his teammates after his trip in August 2023?",
+      "answer": "Aug 15th",
+      "response": "Met teammates on August 15, 2023",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What did John's teammates give him when they met on Aug 15th?",
+      "answer": "a basketball with autographs on it",
+      "response": "An autographed basketball from teammates",
+      "category": "4",
+      "bleu_score": 0.1637,
+      "f1_score": 0.1818,
+      "llm_score": 1
+    },
+    {
+      "question": "Why did John's teammates sign the basketball they gave him?",
+      "answer": "to show their friendship and appreciation",
+      "response": "To show friendship and appreciation.",
+      "category": "4",
+      "bleu_score": 0.8333,
+      "f1_score": 0.9091,
+      "llm_score": 1
+    },
+    {
+      "question": "What is the main intention behind Tim wanting to attend the book conference?",
+      "answer": "to learn more about literature and create a stronger bond to it",
+      "response": "Meet fellow fans and network",
+      "category": "4",
+      "bleu_score": 0.0493,
+      "f1_score": 0.125,
+      "llm_score": 0
+    },
+    {
+      "question": "What new activity has Tim started learning in August 2023?",
+      "answer": "play the piano",
+      "response": "He started learning the violin.",
+      "category": "4",
+      "bleu_score": 0.1667,
+      "f1_score": 0.25,
+      "llm_score": 0
+    },
+    {
+      "question": "Which movie's theme is Tim's favorite to play on the piano?",
+      "answer": "\"Harry Potter and the Philosopher's Stone\"",
+      "response": "Harry Potter and the Philosopher's Stone",
+      "category": "4",
+      "bleu_score": 0.7515,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What special memory does \"Harry Potter and the Philosopher's Stone\" bring to Tim?",
+      "answer": "Watching it with his family",
+      "response": "Family movie night with snacks",
+      "category": "4",
+      "bleu_score": 0.4,
+      "f1_score": 0.4,
+      "llm_score": 1
+    },
+    {
+      "question": "Which movie does Tim mention they enjoy watching during Thanksgiving?",
+      "answer": "\"Home Alone\"",
+      "response": "He enjoys watching Home Alone.",
+      "category": "4",
+      "bleu_score": 0.3333,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What tradition does Tim mention they love during Thanksgiving?",
+      "answer": "Prepping the feast and talking about what they're thankful for",
+      "response": "Watching movies together, especially Home Alone.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "How long did John and his high school basketball teammates play together?",
+      "answer": "Four years",
+      "response": "Through middle and high school together",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "How was John's experience in New York City?",
+      "answer": "Amazing",
+      "response": "Amazing overall; subway confusing initially.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.3333,
+      "llm_score": 1
+    },
+    {
+      "question": "What did John say about NYC, enticing Tim to visit?",
+      "answer": "It's got so much to check out - the culture, food - you won't regret it.",
+      "response": "It's a must-visit: culture, food, adventure",
+      "category": "4",
+      "bleu_score": 0.1839,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of soup did John make recently?",
+      "answer": "tasty soup with sage",
+      "response": "Butternut squash soup with sage",
+      "category": "4",
+      "bleu_score": 0.6,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What spice did John add to the soup for flavor?",
+      "answer": "sage",
+      "response": "John added sage to the soup.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "What is Tim excited to see at Universal Studios?",
+      "answer": "The Harry Potter stuff",
+      "response": "Excited for the Harry Potter stuff",
+      "category": "4",
+      "bleu_score": 0.6667,
+      "f1_score": 0.8,
+      "llm_score": 1
+    },
+    {
+      "question": "Where are John and his teammates planning to explore on a team trip?",
+      "answer": "a new city",
+      "response": "Exploring a new city; considering Edinburgh.",
+      "category": "4",
+      "bleu_score": 0.375,
+      "f1_score": 0.4444,
+      "llm_score": 1
+    },
+    {
+      "question": "What city did Tim suggest to John for the team trip next month?",
+      "answer": "Edinburgh, Scotland",
+      "response": "He suggested Edinburgh, Scotland for trip.",
+      "category": "4",
+      "bleu_score": 0.375,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "What does John want to do after his basketball career?",
+      "answer": "positively influence and inspire others, potentially start a foundation and engage in charity work",
+      "response": "Work in charity helping disadvantaged kids",
+      "category": "4",
+      "bleu_score": 0.1116,
+      "f1_score": 0.3158,
+      "llm_score": 1
+    },
+    {
+      "question": "What advice did Tim give John about picking endorsements?",
+      "answer": "Ensure they align with values and brand, look for companies that share the desire to make a change and help others, make sure the endorsement feels authentic",
+      "response": "Choose endorsements aligned with your values.",
+      "category": "4",
+      "bleu_score": 0.0123,
+      "f1_score": 0.1333,
+      "llm_score": 1
+    },
+    {
+      "question": "What book recommendation did Tim give to John for the trip?",
+      "answer": "A fantasy novel by Patrick Rothfuss",
+      "response": "The Name of the Wind \u2014 Rothfuss",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.1667,
+      "llm_score": 1
+    },
+    {
+      "question": "What type of venue did John and his girlfriend choose for their wedding ceremony?",
+      "answer": "Greenhouse",
+      "response": "They chose a lovely greenhouse venue.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "What was the setting for John and his wife's first dance?",
+      "answer": "Cozy restaurant",
+      "response": "At a cozy, candlelit restaurant.",
+      "category": "4",
+      "bleu_score": 0.2857,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "Which basketball team does Tim support?",
+      "answer": "The Wolves",
+      "response": "Unknown; no team mentioned by Tim.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What passion does Tim mention connects him with people from all over the world?",
+      "answer": "passion for fantasy stuff",
+      "response": "Traveling and exploring cultures and places.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "How does John describe the game season for his team?",
+      "answer": "intense with tough losses and great wins",
+      "response": "Season has been going great.",
+      "category": "4",
+      "bleu_score": 0.1411,
+      "f1_score": 0.1667,
+      "llm_score": 0
+    },
+    {
+      "question": "How does John say his team handles tough opponents?",
+      "answer": "by backing each other up and not quitting",
+      "response": "They back each other up.",
+      "category": "4",
+      "bleu_score": 0.3583,
+      "f1_score": 0.4615,
+      "llm_score": 1
+    },
+    {
+      "question": "What motivates John's team to get better, according to John?",
+      "answer": "facing tough opponents",
+      "response": "Tough opponents drive them to improve.",
+      "category": "4",
+      "bleu_score": 0.2857,
+      "f1_score": 0.4444,
+      "llm_score": 1
+    },
+    {
+      "question": "What did John's team win at the end of the season?",
+      "answer": "a trophy",
+      "response": "The team won a trophy.",
+      "category": "4",
+      "bleu_score": 0.3333,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "Where did Tim capture the photography of the sunset over the mountain range?",
+      "answer": "Smoky Mountains",
+      "response": "The Smoky Mountains last year.",
+      "category": "4",
+      "bleu_score": 0.3333,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "How does John feel about being seen as a mentor by some of the younger players?",
+      "answer": "It feels great",
+      "response": "He finds it rewarding and fulfilling.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2222,
+      "llm_score": 1
+    },
+    {
+      "question": "What does John find rewarding about mentoring the younger players?",
+      "answer": "Seeing their growth, improvement, and confidence",
+      "response": "Seeing their growth, improvement, and confidence.",
+      "category": "4",
+      "bleu_score": 0.8889,
+      "f1_score": 1.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What has John been able to help the younger players achieve?",
+      "answer": "reach their goals",
+      "response": "Develop, improve, and reach their goals",
+      "category": "4",
+      "bleu_score": 0.375,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What genre is the novel that Tim is writing?",
+      "answer": "Fantasy",
+      "response": "Tim is writing a fantasy novel.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "Who is one of Tim's sources of inspiration for writing?",
+      "answer": "J.K. Rowling",
+      "response": "J.K. Rowling is an inspiration.",
+      "category": "4",
+      "bleu_score": 0.3333,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What J.K. Rowling quote does Tim resonate with?",
+      "answer": "\"Turn on the light - happiness hides in the darkest of times.\"",
+      "response": "Turn on the light; happiness hides.",
+      "category": "4",
+      "bleu_score": 0.3648,
+      "f1_score": 0.4444,
+      "llm_score": 1
+    },
+    {
+      "question": "What does John write on the whiteboard to help him stay motivated?",
+      "answer": "motivational quotes and strategies",
+      "response": "Unknown",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What hobby is a therapy for John when away from the court?",
+      "answer": "Cooking",
+      "response": "Surfing and connecting with nature.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What type of meal does John often cook using a slow cooker?",
+      "answer": "honey garlic chicken with roasted veg",
+      "response": "Honey garlic chicken with roasted vegetables",
+      "category": "4",
+      "bleu_score": 0.8333,
+      "f1_score": 0.8333,
+      "llm_score": 1
+    },
+    {
+      "question": "How will John share the honey garlic chicken recipe with the other person?",
+      "answer": "write it down and mail it",
+      "response": "He'll write it down and mail",
+      "category": "4",
+      "bleu_score": 0.7143,
+      "f1_score": 0.9091,
+      "llm_score": 1
+    },
+    {
+      "question": "What was Tim's huge writing issue last week,as mentioned on November 6, 2023?",
+      "answer": "He got stuck on a plot twist",
+      "response": "Got stuck on a plot twist.",
+      "category": "4",
+      "bleu_score": 0.8571,
+      "f1_score": 0.9231,
+      "llm_score": 1
+    },
+    {
+      "question": "What does Tim have that serves as a reminder of hard work and is his prized possession?",
+      "answer": "a basketball signed by his favorite player",
+      "response": "Signed basketball by his favorite player.",
+      "category": "4",
+      "bleu_score": 0.8571,
+      "f1_score": 0.9231,
+      "llm_score": 1
+    },
+    {
+      "question": "Why do Tim and John find LeBron inspiring?",
+      "answer": "LeBron's determination and the epic block in Game 7 of the '16 Finals",
+      "response": "Determination, skill, leadership, work ethic",
+      "category": "4",
+      "bleu_score": 0.059,
+      "f1_score": 0.1176,
+      "llm_score": 1
+    },
+    {
+      "question": "How did John describe the views during their road trip out on the European coastline?",
+      "answer": "Spectacular",
+      "response": "He said the views were spectacular.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "What is one of Tim's favorite fantasy TV shows, as mentioned on November 11, 2023?",
+      "answer": "\"That\"",
+      "response": "Game of Thrones is a favorite.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "How does Tim stay motivated during difficult study sessions?",
+      "answer": "Visualizing goals and success",
+      "response": "Breaks studying into 25/5 intervals.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What did Tim say about his injury on 16 November, 2023?",
+      "answer": "The doctor said it's not too serious",
+      "response": "Ouch, bummer about the injury.",
+      "category": "4",
+      "bleu_score": 0.1238,
+      "f1_score": 0.1667,
+      "llm_score": 0
+    },
+    {
+      "question": "What was the setback Tim faced in his writing project on 21 November, 2023?",
+      "answer": "Story based on experiences in the UK didn't go as planned",
+      "response": "Story based on UK trip failed.",
+      "category": "4",
+      "bleu_score": 0.2797,
+      "f1_score": 0.4706,
+      "llm_score": 1
+    },
+    {
+      "question": "How did John overcome his ankle injury from last season?",
+      "answer": "stayed focused on recovery and worked hard to strengthen his body",
+      "response": "With rest, daily rehab, perseverance.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What motivated Tim to keep pushing himself to get better in writing and reading?",
+      "answer": "Love for writing and reading",
+      "response": "His love for reading and writing",
+      "category": "4",
+      "bleu_score": 0.8333,
+      "f1_score": 0.9091,
+      "llm_score": 1
+    },
+    {
+      "question": "How did John overcome a mistake he made during a big game in basketball?",
+      "answer": "Worked hard to get better and focused on growth",
+      "response": "Unknown \u2014 fragments contain no relevant details",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What book did John recently finish rereading that left him feeling inspired and hopeful about following dreams?",
+      "answer": "The Alchemist",
+      "response": "He reread The Alchemist recently",
+      "category": "4",
+      "bleu_score": 0.4,
+      "f1_score": 0.5714,
+      "llm_score": 1
+    },
+    {
+      "question": "How did \"The Alchemist\" impact John's perspective on following dreams?",
+      "answer": "made him think again about following dreams and searching for personal legends",
+      "response": "Encouraged him to pursue his dreams.",
+      "category": "4",
+      "bleu_score": 0.1399,
+      "f1_score": 0.2222,
+      "llm_score": 1
+    },
+    {
+      "question": "What is John trying out to improve his strength and flexibility after recovery from ankle injury?",
+      "answer": "yoga",
+      "response": "Doing daily physical therapy exercises.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "How long does John usually hold the yoga pose he shared with Tim?",
+      "answer": "30-60 seconds",
+      "response": "About thirty to sixty seconds.",
+      "category": "4",
+      "bleu_score": 0.1667,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "Where was the forest picture shared by John on December 1,2023 taken?",
+      "answer": "near his hometown",
+      "response": "A forest near John's hometown.",
+      "category": "4",
+      "bleu_score": 0.2857,
+      "f1_score": 0.5,
+      "llm_score": 1
+    },
+    {
+      "question": "What did Tim recently start learning in addition to being part of a travel club and working on studies?",
+      "answer": "an instrument",
+      "response": "He started learning to play violin.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What instrument is Tim learning to play in December 2023?",
+      "answer": "violin",
+      "response": "Tim is learning to play violin.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "How long has Tim been playing the piano for, as of December 2023?",
+      "answer": "about four months",
+      "response": "About four months in December 2023",
+      "category": "4",
+      "bleu_score": 0.5,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What book did Tim just finish reading on 8th December, 2023?",
+      "answer": "\"A Dance with Dragons\"",
+      "response": "Tim finished A Dance with Dragons",
+      "category": "4",
+      "bleu_score": 0.6667,
+      "f1_score": 0.4,
+      "llm_score": 1
+    },
+    {
+      "question": "Which book did Tim recommend to John as a good story on 8th December, 2023?",
+      "answer": "\"A Dance with Dragons\"",
+      "response": "A Dance with Dragons recommended",
+      "category": "4",
+      "bleu_score": 0.655,
+      "f1_score": 0.4444,
+      "llm_score": 1
+    },
+    {
+      "question": "What is the topic of discussion between John and Tim on 11 December, 2023?",
+      "answer": "Academic achievements and sports successes",
+      "response": "John's career-high assists in basketball",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What kind of game did John have a career-high in assists in?",
+      "answer": "basketball",
+      "response": "a big game against our rival",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What was John's way of dealing with doubts and stress when he was younger?",
+      "answer": "practicing basketball outside for hours",
+      "response": "He visualized his goals and success.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "How did John feel about the atmosphere during the big game against the rival team?",
+      "answer": "electric and intense",
+      "response": "The atmosphere was electric and intense.",
+      "category": "4",
+      "bleu_score": 0.4286,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "How did John feel after being able to jog without pain?",
+      "answer": "It was a huge success.",
+      "response": "He felt relieved and hugely successful.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.0,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of deal did John get in December?",
+      "answer": "Deal with a renowned outdoor gear company",
+      "response": "Endorsement deal with outdoor gear company",
+      "category": "4",
+      "bleu_score": 0.7054,
+      "f1_score": 0.7692,
+      "llm_score": 1
+    },
+    {
+      "question": "Where was the photoshoot done for John's gear deal?",
+      "answer": "In a gorgeous forest",
+      "response": "Photoshoot was done in a forest",
+      "category": "4",
+      "bleu_score": 0.5,
+      "f1_score": 0.6,
+      "llm_score": 1
+    },
+    {
+      "question": "In which area has John's team seen the most growth during training?",
+      "answer": "Communication and bonding",
+      "response": "Growth in communication and team bonding",
+      "category": "4",
+      "bleu_score": 0.5,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What type of seminars is John conducting?",
+      "answer": "Sports and marketing seminars",
+      "response": "Sports and marketing seminars for athletes",
+      "category": "4",
+      "bleu_score": 0.6667,
+      "f1_score": 0.8,
+      "llm_score": 1
+    },
+    {
+      "question": "What activity did Tim do after reading the stories about the Himalayan trek?",
+      "answer": "visited a travel agency",
+      "response": "No activity mentioned in fragments.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What is one cause that John supports with his influence and resources?",
+      "answer": "youth sports and fair chances in sports",
+      "response": "Youth sports for underserved communities",
+      "category": "4",
+      "bleu_score": 0.2681,
+      "f1_score": 0.3636,
+      "llm_score": 1
+    },
+    {
+      "question": "What new fantasy TV series is Tim excited about?",
+      "answer": "\"The Wheel of Time\"",
+      "response": "Excited for The Wheel of Time",
+      "category": "4",
+      "bleu_score": 0.6667,
+      "f1_score": 0.4,
+      "llm_score": 1
+    },
+    {
+      "question": "Which language is Tim learning?",
+      "answer": "German",
+      "response": "Tim is learning German right now.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "What language does Tim know besides German?",
+      "answer": "Spanish",
+      "response": "He studied French in high school.",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What book did Tim get in Italy that inspired him to cook?",
+      "answer": "a cooking book",
+      "response": "Unknown",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What is John's favorite book series?",
+      "answer": "Harry Potter",
+      "response": "Unknown \u2014 not specified in conversation",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "According to John, who is his favorite character from Lord of the Rings?",
+      "answer": "Aragorn",
+      "response": "John's favorite LOTR character is Aragorn.",
+      "category": "4",
+      "bleu_score": 0.125,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "Why does John like Aragorn from Lord of the Rings?",
+      "answer": "brave, selfless, down-to-earth attitude",
+      "response": "Brave, selfless leader; puts others first.",
+      "category": "4",
+      "bleu_score": 0.3333,
+      "f1_score": 0.4,
+      "llm_score": 1
+    },
+    {
+      "question": "What kind of painting does John have in his room as a reminder?",
+      "answer": "a painting of Aragorn",
+      "response": "Unknown",
+      "category": "4",
+      "bleu_score": 0,
+      "f1_score": 0.0,
+      "llm_score": 0
+    },
+    {
+      "question": "What is the painting of Aragorn a reminder for John to be in everything he does?",
+      "answer": "be a leader",
+      "response": "Stay true and be a leader",
+      "category": "4",
+      "bleu_score": 0.5,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What map does Tim show to his friend John?",
+      "answer": "a map of Middle-earth from LOTR",
+      "response": "A map of Middle-earth from LOTR",
+      "category": "4",
+      "bleu_score": 1.0,
+      "f1_score": 1.0,
+      "llm_score": 1
+    },
+    {
+      "question": "Where will Tim be going for a semester abroad?",
+      "answer": "Ireland",
+      "response": "Galway, Ireland for a semester.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.3333,
+      "llm_score": 1
+    },
+    {
+      "question": "Which city in Ireland will Tim be staying in during his semester abroad?",
+      "answer": "Galway",
+      "response": "Tim will be staying in Galway.",
+      "category": "4",
+      "bleu_score": 0.1429,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    },
+    {
+      "question": "What charity event did John organize recently in 2024?",
+      "answer": "benefit basketball game",
+      "response": "He organized a benefit basketball game.",
+      "category": "4",
+      "bleu_score": 0.4286,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What achievement did John share with Tim in January 2024?",
+      "answer": "endorsement with a popular beverage company",
+      "response": "He got a beverage company endorsement",
+      "category": "4",
+      "bleu_score": 0.6667,
+      "f1_score": 0.6667,
+      "llm_score": 1
+    },
+    {
+      "question": "What was Johns's reaction to sealing the deal with the beverage company?",
+      "answer": "crazy feeling, sense of accomplishment",
+      "response": "He said it felt crazy, rewarding.",
+      "category": "4",
+      "bleu_score": 0.25,
+      "f1_score": 0.1818,
+      "llm_score": 1
+    },
+    {
+      "question": "Which city did John recommend to Tim in January 2024?",
+      "answer": "Barcelona",
+      "response": "John recommended Barcelona, Spain, to Tim.",
+      "category": "4",
+      "bleu_score": 0.1111,
+      "f1_score": 0.2857,
+      "llm_score": 1
+    }
+  ]
+}

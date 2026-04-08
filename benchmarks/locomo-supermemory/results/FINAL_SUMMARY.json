@@ -1,0 +1,55 @@
+{
+  "benchmark": "LOCOMO-10",
+  "system": "Supermemory",
+  "run_id": "locomo-sm-test-002",
+  "test_date": "2026-04-02 to 2026-04-05",
+  "framework": "MemoryBench",
+  "category_mapping": {
+    "source": "snap-research/locomo Issue #27, PR #8",
+    "note": "MemoryBench internally uses paper-text-order labels which are WRONG relative to dataset numbering. The mapping below uses corrected LoCoMo dataset numbering per Issue #27.",
+    "mapping": {
+      "1": {"label": "Multi-hop", "memorybench_label": "single-hop", "count": 282},
+      "2": {"label": "Temporal", "memorybench_label": "multi-hop", "count": 321},
+      "3": {"label": "Open-domain", "memorybench_label": "temporal", "count": 96},
+      "4": {"label": "Single-hop", "memorybench_label": "world-knowledge", "count": 841},
+      "5": {"label": "Adversarial", "memorybench_label": "adversarial", "count": 446}
+    }
+  },
+  "configuration": {
+    "answer_model": "gpt-5-mini",
+    "judge_model": "gpt-4o-mini",
+    "top_k": 10,
+    "provider": "supermemory"
+  },
+  "overall": {
+    "total_questions": 1986,
+    "correct": 1291,
+    "accuracy_pct": 65.0,
+    "excluding_adversarial": {
+      "total": 1540,
+      "correct": 991,
+      "accuracy_pct": 64.4,
+      "note": "Comparable to M-flow (81.8%) and Zep (78.4%) which exclude adversarial"
+    }
+  },
+  "memscore": "65%",
+  "memscore_components": {
+    "quality": 65
+  },
+  "per_category": {
+    "Multi-hop (Cat 1)": {"correct": 167, "total": 282, "accuracy_pct": 59.2},
+    "Temporal (Cat 2)": {"correct": 188, "total": 321, "accuracy_pct": 58.6},
+    "Open-domain (Cat 3)": {"correct": 49, "total": 96, "accuracy_pct": 51.0},
+    "Single-hop (Cat 4)": {"correct": 587, "total": 841, "accuracy_pct": 69.8},
+    "Adversarial (Cat 5)": {"correct": 300, "total": 446, "accuracy_pct": 67.3}
+  },
+  "retrieval_metrics": {
+    "hitAtK": 0.845,
+    "precisionAtK": 0.174,
+    "recallAtK": 0.845,
+    "f1AtK": 0.269,
+    "mrr": 0.606,
+    "ndcg": 0.632,
+    "k": 10
+  }
+}

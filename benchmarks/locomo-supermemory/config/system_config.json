@@ -1,0 +1,32 @@
+{
+  "system": "Supermemory",
+  "framework": "MemoryBench",
+  "test_date": "2026-04-02 to 2026-04-05",
+  "run_id": "locomo-sm-test-002",
+
+  "llm_answer": {
+    "model": "gpt-5-mini",
+    "note": "Configured via MemoryBench CLI"
+  },
+  "llm_judge": {
+    "model": "gpt-4o-mini",
+    "note": "MemoryBench default LLM-as-Judge"
+  },
+  "embedding": {
+    "note": "Managed by Supermemory SaaS (not configurable)"
+  },
+  "retrieval": {
+    "top_k": 10,
+    "method": "Supermemory API search"
+  },
+  "database": {
+    "note": "Managed by Supermemory SaaS (internals not configurable)"
+  },
+  "dataset": {
+    "name": "LoCoMo-10",
+    "source": "https://github.com/snap-research/LoCoMo",
+    "total_questions": 1986,
+    "evaluated_including_adversarial": 1986,
+    "evaluated_excluding_adversarial": 1540
+  }
+}

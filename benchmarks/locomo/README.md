@@ -38,7 +38,7 @@ Conv 8 was run 5 times to measure variance: mean 75.1%, std 0.9%, range 73.7%-76
 
 | Component | Value |
 |-----------|-------|
-| M-flow version | 0.3.2-dev |
+| M-flow version | [0.3.2+](https://github.com/FlowElement-ai/m_flow) (commit `3afcb94` or later) |
 | LLM (ingestion) | gpt-5-nano |
 | LLM (answer) | gpt-5-mini (temperature=1, not configurable) |
 | LLM (judge) | gpt-4o-mini (temperature=0) |
@@ -59,20 +59,20 @@ Full configuration: `config/system_config.json`
 
 See `METHODOLOGY.md` for full details including timeout handling, Kuzu lock issue, and script adaptations.
 
-## Bug Fix Applied
+## Version Note
 
-M-flow 0.3.2 has a bug in `phase0a.py` where the `config` variable is not passed to `_task_generate_facets()`, causing all Episode summarization to fall back to raw text truncation. This was fixed before ingestion. See `fixes/` for the patch and details.
+This benchmark was run on M-flow 0.3.2 with a bug fix for `phase0a.py` (config not passed to `_task_generate_facets`). The fix is included in the main branch since commit `3afcb94`. Clone the latest main branch to reproduce.
 
 ## Reproduction
 
 ### Prerequisites
-- M-flow 0.3.2 with `phase0a_config_fix.patch` applied
+- M-flow from GitHub main branch (commit `3afcb94` or later)
 - Docker
 - OpenAI API key (for gpt-5-mini answer generation and gpt-4o-mini judging)
 - `locomo10.json` dataset (see `data/DATA_SOURCE.md`)
 
 ### Steps
-1. Deploy M-flow Docker with fix applied
+1. Clone M-flow repo and build Docker image
 2. Ingest using `scripts_original/run_ingest_batched.py --no-prune --force`
 3. **Stop the M-flow API server** (Kuzu file lock — critical!)
 4. Run search: `scripts/search_aligned.py --top-k 10` (one conv at a time via `docker run`)
@@ -101,22 +101,32 @@ See `METHODOLOGY.md` for detailed instructions.
 │   ├── authoritative/           # 10 FULL_REPORT files (14 fields each)
 │   ├── conv8_variance/          # 5-run variance test data
 │   └── raw_data/                # All intermediate files preserved
-├── fixes/
-│   ├── phase0a_config_fix.patch # Config bug fix
-│   └── FIX_NOTES.md             # Fix description
 └── data/
     └── DATA_SOURCE.md           # Dataset download instructions
 ```
 
 ## Comparisons
 
+### Aligned (top-k = 10)
+
 | System | Score | Answer LLM | Judge LLM | Top-K |
 |--------|:-----:|------------|-----------|:-----:|
-| **M-flow 0.3.2** | **81.8%** | gpt-5-mini | gpt-4o-mini | 10 |
-| M-flow (previous) | 76.5% | gpt-4o | gpt-4o-mini | 10 |
-| Zep Cloud (20e+20n) | 78.4% | gpt-5-mini | gpt-4o-mini | 40 |
+| **M-flow** | **81.8%** | gpt-5-mini | gpt-4o-mini | 10 |
+| Cognee Cloud | 79.4% | gpt-5-mini | gpt-4o-mini | 10 |
 | Zep Cloud (7e+3n) | 73.4% | gpt-5-mini | gpt-4o-mini | 10 |
-| Mem0 (published) | 67.1% | — | — | 30×2 |
-| Mem0ᵍ (published) | 68.5% | — | — | 30×2 |
+| Supermemory | 64.4% | gpt-5-mini | gpt-4o-mini | 10 |
 
-Note: Different systems use different answer LLMs, retrieval strategies, and context sizes. Direct comparison requires careful consideration of these factors.
+### With vendor-default retrieval budgets
+
+| System | Score | Answer LLM | Judge LLM | Top-K |
+|--------|:-----:|------------|-----------|:-----:|
+| **M-flow** | **81.8%** | gpt-5-mini | gpt-4o-mini | 10 |
+| Cognee Cloud | 79.4% | gpt-5-mini | gpt-4o-mini | 10 |
+| Zep Cloud (20e+20n) | 78.4% | gpt-5-mini | gpt-4o-mini | 40 |
+| Mem0ᵍ (published) | 68.5% | — | — | — |
+| Mem0 (published) | 67.1% | — | — | — |
+| Supermemory | 64.4% | gpt-5-mini | gpt-4o-mini | 10 |
+
+Mem0 retrieval budget not disclosed in paper. Published scores from [Mem0 paper](https://arxiv.org/abs/2504.19413); answer/judge LLMs not disclosed.
+
+Note: Different systems use different retrieval strategies, context assembly methods, and ingestion pipelines. Direct comparison requires careful consideration of these factors. Full methodology and reproduction scripts are provided in each system's subdirectory.

@@ -1,0 +1,44 @@
+{
+  "system": "Cognee Cloud",
+  "api_version": "v1",
+  "api_base": "https://api.cognee.ai",
+  "search_type": "CHUNKS",
+  "llm_answer": {
+    "model": "gpt-5-mini",
+    "provider": "OpenAI",
+    "note": "Reasoning model — temperature parameter not applicable"
+  },
+  "llm_judge": {
+    "model": "gpt-4o-mini",
+    "provider": "OpenAI",
+    "temperature": 0,
+    "response_format": "json_object"
+  },
+  "embedding": {
+    "model": "Cognee Cloud default",
+    "note": "Cognee Cloud manages embedding internally; expected to be text-embedding-3-small based on source code"
+  },
+  "retrieval": {
+    "top_k": 10,
+    "method": "Cognee CHUNKS search (vector retrieval on DocumentChunk_text collection)",
+    "search_type": "CHUNKS",
+    "note": "CHUNKS mode performs pure vector search, returning raw text chunks without LLM completion"
+  },
+  "database": {
+    "note": "Managed by Cognee Cloud SaaS (graph + vector internals not configurable)"
+  },
+  "ingestion": {
+    "strategy": "per-session serial upload, then cognify once per conversation",
+    "chunking": "TextChunker (paragraph-based, max_chunk_size = get_max_chunk_tokens())",
+    "dataset_prefix": "locomo_r4",
+    "cognify_mode": "default (non-temporal)"
+  },
+  "dataset": {
+    "name": "LoCoMo-10",
+    "source": "snap-research/locomo",
+    "conversations": 10,
+    "total_questions": 1986,
+    "evaluated_questions": 1540,
+    "excluded": "Category 5 (Adversarial) — 446 questions excluded per standard methodology"
+  }
+}

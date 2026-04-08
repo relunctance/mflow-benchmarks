@@ -1,0 +1,14 @@
+# Cognee LOCOMO Benchmark Dependencies
+# Aligned with MFlow evaluation requirements
+
+# Core
+openai>=1.0.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# NLP / Metrics
+nltk>=3.8.0
+
+# Data processing
+pandas>=2.0.0
+tqdm>=4.65.0

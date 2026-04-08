@@ -1,6 +1,7 @@
 {
   "benchmark": "LOCOMO-10",
   "system": "M-flow 0.3.2",
+  "date": "2026-04-04",
   "category_mapping": {
     "source": "snap-research/locomo Issue #27, PR #8",
     "mapping": {

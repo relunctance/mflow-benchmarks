@@ -1,0 +1,6 @@
+.env
+dataset/locomo10.json
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store

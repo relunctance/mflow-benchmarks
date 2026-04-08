@@ -1,0 +1,99 @@
+{
+  "benchmark": "LOCOMO-10",
+  "system": "Zep Cloud (Graphiti)",
+  "test_date": "2026-04-02 to 2026-04-03",
+  "category_mapping": {
+    "source": "snap-research/locomo Issue #27, PR #8",
+    "mapping": {
+      "1": "Multi-hop",
+      "2": "Temporal",
+      "3": "Open-domain",
+      "4": "Single-hop",
+      "5": "Adversarial"
+    }
+  },
+  "rounds": {
+    "round1_20e20n": {
+      "config": {
+        "edges_limit": 20,
+        "nodes_limit": 20,
+        "total_items": 40
+      },
+      "answer_model": "gpt-5-mini",
+      "judge_model": "gpt-4o-mini",
+      "questions_evaluated": 1540,
+      "correct": 1208,
+      "score_pct": 78.44
+    },
+    "round2_7e3n": {
+      "config": {
+        "edges_limit": 7,
+        "nodes_limit": 3,
+        "total_items": 10
+      },
+      "answer_model": "gpt-5-mini",
+      "judge_model": "gpt-4o-mini",
+      "questions_evaluated": 1540,
+      "correct": 1131,
+      "score_pct": 73.44
+    },
+    "zep_official": {
+      "config": {
+        "edges_limit": 20,
+        "nodes_limit": 20
+      },
+      "answer_model": "gpt-4o-mini",
+      "judge_model": "gpt-4o-mini",
+      "questions_evaluated": 1540,
+      "correct": 1157,
+      "score_pct": 75.13,
+      "source": "getzep/zep-papers"
+    }
+  },
+  "per_category": {
+    "round1_20e20n": {
+      "Multi-hop": {
+        "correct": 224,
+        "total": 282,
+        "score_pct": 79.4
+      },
+      "Temporal": {
+        "correct": 235,
+        "total": 321,
+        "score_pct": 73.2
+      },
+      "Open-domain": {
+        "correct": 72,
+        "total": 96,
+        "score_pct": 75.0
+      },
+      "Single-hop": {
+        "correct": 677,
+        "total": 841,
+        "score_pct": 80.5
+      }
+    },
+    "round2_7e3n": {
+      "Multi-hop": {
+        "correct": 190,
+        "total": 282,
+        "score_pct": 67.4
+      },
+      "Temporal": {
+        "correct": 229,
+        "total": 321,
+        "score_pct": 71.3
+      },
+      "Open-domain": {
+        "correct": 62,
+        "total": 96,
+        "score_pct": 64.6
+      },
+      "Single-hop": {
+        "correct": 650,
+        "total": 841,
+        "score_pct": 77.3
+      }
+    }
+  }
+}

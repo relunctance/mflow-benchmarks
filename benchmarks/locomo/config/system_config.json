@@ -1,7 +1,7 @@
 {
   "system": "M-flow",
-  "version": "0.3.2-dev",
-  "deployment": "Docker (custom image with phase0a config fix)",
+  "version": "0.3.2+ (GitHub main, commit 3afcb94)",
+  "deployment": "Docker (built from source)",
 
   "llm_ingest": {
     "model": "openai/gpt-5-nano",

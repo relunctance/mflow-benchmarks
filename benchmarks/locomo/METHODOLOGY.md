@@ -21,11 +21,11 @@ API ingest         Episode memories    from memories
 - **Precise Mode**: enabled (`precise_mode: True` in script payload). This is **required** to reproduce the benchmark scores — without it, summarization uses lossy compression and scores drop significantly.
 - **Total time**: 10h 39m (272 sessions across 10 conversations)
 
-### Bug Fix Required
+### Version Requirement
 
-M-flow 0.3.2 has a bug where `config` is undefined in `_task_generate_facets()`. Without the fix, ALL Episode summaries degrade to raw text truncated at 500 chars. See `fixes/` for the patch.
+M-flow 0.3.2 (PyPI) has a bug where `config` is undefined in `_task_generate_facets()`, causing all Episode summaries to degrade to raw text truncated at 500 chars. This is fixed in the main branch (commit `3afcb94`). Use the latest main branch to reproduce.
 
-**Verification**: After fix, container logs show `Generated N sections, M facets` instead of `summarize_by_event failed: name 'config' is not defined`.
+**Verification**: Container logs should show `Generated N sections, M facets` (not `summarize_by_event failed: name 'config' is not defined`).
 
 ## 3. Search + Answer
 
@@ -143,10 +143,8 @@ Each question in `results/authoritative/FULL_REPORT_conv{N}.json` contains 14 fi
 | `evidence` | Evidence reference from dataset |
 | `adversarial_answer` | Adversarial answer (if any) |
 | `num_memories` | Number of memories retrieved |
-| `search_time_sec` | Retrieval latency (seconds) |
 | `memories` | Full content of each retrieved memory (text + timestamp + score) |
 | `mflow_response` | M-flow's generated answer |
-| `response_time_sec` | LLM answer latency (seconds) |
 | `llm_judge_score` | Judge verdict: 1=CORRECT, 0=WRONG, null=not evaluated (cat5) |
 | `bleu_score` | BLEU-1 score |
 | `f1_score` | Token-level F1 score |

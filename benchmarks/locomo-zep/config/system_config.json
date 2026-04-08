@@ -1,0 +1,68 @@
+{
+  "system": "Zep Cloud (powered by Graphiti)",
+  "api_base_url": "https://api.getzep.com/api/v2",
+  "test_date": "2026-04-02 to 2026-04-03",
+  "note": "Zep Cloud is a managed SaaS. Internal models/algorithms may change over time. Results reflect the system state on the test date.",
+
+  "sdk": {
+    "package": "zep-cloud",
+    "version_original_scripts": "2.22.1 (last version with group_id parameter)",
+    "version_adapted_scripts": "3.18.0 (uses graph_id parameter)",
+    "note": "Original scripts require 2.22.1. Adapted scripts require 3.x."
+  },
+
+  "llm_answer": {
+    "model": "gpt-5-mini",
+    "temperature": "default (1) — gpt-5-mini does not support temperature=0",
+    "max_tokens": "not set",
+    "note": "Original Zep scripts use gpt-4o-mini with temperature=0"
+  },
+  "llm_judge": {
+    "model": "gpt-4o-mini",
+    "temperature": 0,
+    "response_format": "structured output (Pydantic Grade model)",
+    "note": "Identical to original Zep scripts"
+  },
+  "embedding": {
+    "note": "Handled internally by Zep Cloud (not configurable). Graphiti open-source default is text-embedding-3-small (1024 dim)."
+  },
+  "retrieval": {
+    "method": "Graphiti hybrid search (edges + nodes with reranking)",
+    "round1": {
+      "top_k": 40,
+      "edges_limit": 20,
+      "edges_reranker": "cross_encoder",
+      "nodes_limit": 20,
+      "nodes_reranker": "rrf",
+      "total_items_per_query": 40
+    },
+    "round2": {
+      "top_k": 10,
+      "edges_limit": 7,
+      "edges_reranker": "cross_encoder",
+      "nodes_limit": 3,
+      "nodes_reranker": "rrf",
+      "total_items_per_query": 10,
+      "note": "Aligned to M-flow top_k=10 for fair comparison"
+    }
+  },
+  "database": {
+    "note": "Managed by Zep Cloud SaaS (graph + vector internals not configurable)"
+  },
+  "ingestion": {
+    "users": 10,
+    "sessions": 272,
+    "messages": 5882,
+    "total_time_minutes": 27
+  },
+  "dataset": {
+    "name": "LoCoMo-10",
+    "source": "https://github.com/snap-research/LoCoMo",
+    "evaluated_questions": 1540,
+    "excluded": "Category 5 (Adversarial, 446 questions)"
+  },
+  "known_bugs_preserved": [
+    "blip_captions field name typo in ingestion (1226 image descriptions silently dropped)",
+    "williolw23 typo in judge prompt"
+  ]
+}
