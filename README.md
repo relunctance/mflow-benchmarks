@@ -70,7 +70,7 @@ mflow-benchmarks/
 ├── README.md
 ├── CONTRIBUTING.md
 └── benchmarks/
-    ├── locomo/                 # M-flow LoCoMo-10 results
+    ├── locomo-mflow/           # M-flow LoCoMo-10 results
     ├── locomo-cognee/          # Cognee Cloud LoCoMo-10 results
     ├── locomo-zep/             # Zep Cloud LoCoMo-10 results
     ├── locomo-supermemory/     # Supermemory LoCoMo-10 results

@@ -1,6 +1,6 @@
 # Changes from Original Scripts
 
-The scripts in this directory are adapted from `mflow-benchmarks-main/benchmarks/locomo/` for M-flow 0.3.2.
+The scripts in this directory are adapted from `mflow-benchmarks-main/benchmarks/locomo-mflow/` for M-flow 0.3.2.
 
 ## Modified File: `search_aligned.py`
 
