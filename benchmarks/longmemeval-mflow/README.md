@@ -142,6 +142,6 @@ LongMemEval Oracle — First 100 Questions | Answer: gpt-5-mini | Judge: gpt-4o-
 |--------|:-------:|:-------------:|:------------------:|
 | **M-flow** | **89%** | **93%** | **82%** |
 | Supermemory Cloud | 74% | 78% | 68% |
-| Mem0 | 71% | 77% | 63% |
+| Mem0 Cloud | 71% | 77% | 63% |
 | Zep Cloud | 61% | 82% | 30% |
 | Cognee | 57% | 67% | 43% |

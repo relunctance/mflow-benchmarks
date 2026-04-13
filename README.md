@@ -8,7 +8,7 @@ This repository contains three benchmark datasets and evaluation results:
 
 | Benchmark | Questions | Systems Tested | Key Metric |
 |-----------|-----------|----------------|------------|
-| **LoCoMo-10** | 1,540 | M-flow vs Mem0 | LLM-Judge Accuracy |
+| **LoCoMo-10** | 1,540 | M-flow vs Mem0 Cloud | LLM-Judge Accuracy |
 | **LongMemEval** | 50 | M-flow vs Graphiti | LLM-Judge Accuracy |
 | **Evolving Events** | 100 | M-flow vs Cognee vs Graphiti | Human-like Correctness |
 
