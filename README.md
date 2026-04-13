@@ -4,30 +4,52 @@ Comparative benchmark suite evaluating episodic memory systems for AI agents.
 
 ## Overview
 
-This repository contains three benchmark datasets and evaluation results:
-
 | Benchmark | Questions | Systems Tested | Key Metric |
 |-----------|-----------|----------------|------------|
-| **LoCoMo-10** | 1,540 | M-flow vs Mem0 Cloud | LLM-Judge Accuracy |
-| **LongMemEval** | 50 | M-flow vs Graphiti | LLM-Judge Accuracy |
-| **Evolving Events** | 100 | M-flow vs Cognee vs Graphiti | Human-like Correctness |
+| **LoCoMo-10** | 1,540 | M-flow, Cognee Cloud, Zep Cloud, Supermemory, Mem0 Cloud | LLM-Judge Accuracy |
+| **LongMemEval** | 100 | M-flow, Supermemory Cloud, Mem0 Cloud, Zep Cloud, Cognee | LLM-Judge Accuracy |
+| **Evolving Events** | 100 | M-flow, Cognee, Graphiti | Human-like Correctness |
 
 ## Results Summary
 
 ### LoCoMo-10 (Multi-Session Conversational QA)
 
-| System | LLM-Judge | BLEU-1 | F1 |
-|--------|-----------|--------|-----|
-| M-flow | 81.8% | — | — |
-| Mem0 Cloud (published) | 66.9% | — | — |
-| Mem0 Cloud (tested) | 50.4% | 0.259 | 0.312 |
+All systems use gpt-5-mini (answer) + gpt-4o-mini (judge). Cat 5 (adversarial) excluded.
+
+**Aligned (top-k = 10)**
+
+| System | LLM-Judge | Answer LLM | Judge LLM | Top-K |
+|--------|:---------:|------------|-----------|:-----:|
+| **M-flow** | **81.8%** | gpt-5-mini | gpt-4o-mini | 10 |
+| Cognee Cloud | 79.4% | gpt-5-mini | gpt-4o-mini | 10 |
+| Zep Cloud (7e+3n) | 73.4% | gpt-5-mini | gpt-4o-mini | 10 |
+| Supermemory | 64.4% | gpt-5-mini | gpt-4o-mini | 10 |
+
+**With vendor-default retrieval budgets**
+
+| System | LLM-Judge | Answer LLM | Judge LLM | Top-K |
+|--------|:---------:|------------|-----------|:-----:|
+| **M-flow** | **81.8%** | gpt-5-mini | gpt-4o-mini | 10 |
+| Cognee Cloud | 79.4% | gpt-5-mini | gpt-4o-mini | 10 |
+| Zep Cloud (20e+20n) | 78.4% | gpt-5-mini | gpt-4o-mini | 40 |
+| Mem0ᵍ Cloud (published) | 68.5% | — | — | — |
+| Mem0 Cloud (published) | 67.1% | — | — | — |
+| Supermemory | 64.4% | gpt-5-mini | gpt-4o-mini | 10 |
+| Mem0 Cloud (tested) | 50.4% | gpt-5-mini | gpt-4o-mini | 30 |
+
+Mem0 published scores from [Mem0 paper](https://arxiv.org/abs/2504.19413); answer/judge LLMs not disclosed. Our tested result (50.4%) uses the same evaluation pipeline as all other systems.
 
 ### LongMemEval (Long-term Memory QA)
 
-| System | LLM-Judge | F1 | BLEU-1 |
-|--------|-----------|-----|--------|
-| M-flow | 80% | 0.405 | 0.295 |
-| Graphiti | 64% | 0.372 | 0.289 |
+First 100 questions. All systems use gpt-5-mini (answer) + gpt-4o-mini (judge) + top-k=10.
+
+| System | LLM-Judge | Temporal (60) | Multi-session (40) |
+|--------|:---------:|:-------------:|:------------------:|
+| **M-flow** | **89%** | **93%** | **82%** |
+| Supermemory Cloud | 74% | 78% | 68% |
+| Mem0 Cloud | 71% | 77% | 63% |
+| Zep Cloud | 61% | 82% | 30% |
+| Cognee | 57% | 67% | 43% |
 
 ### Evolving Events (Multi-hop Reasoning)
 
@@ -48,47 +70,29 @@ mflow-benchmarks/
 ├── README.md
 ├── CONTRIBUTING.md
 └── benchmarks/
-    ├── locomo/           # LoCoMo-10 benchmark
-    │   ├── README.md
-    │   └── run_benchmark.sh
-    ├── longmemeval/      # LongMemEval benchmark
-    │   ├── README.md
-    │   ├── LICENSE
-    │   ├── config.yaml
-    │   ├── scripts/
-    │   └── results/
-    └── evolving-events/  # Evolving Events benchmark
-        ├── README.md
-        └── results/
+    ├── locomo/                 # M-flow LoCoMo-10 results
+    ├── locomo-cognee/          # Cognee Cloud LoCoMo-10 results
+    ├── locomo-zep/             # Zep Cloud LoCoMo-10 results
+    ├── locomo-supermemory/     # Supermemory LoCoMo-10 results
+    ├── locomo-mem0/            # Mem0 Cloud LoCoMo-10 results
+    ├── longmemeval-mflow/      # M-flow LongMemEval results
+    ├── longmemeval-mem0/       # Mem0 Cloud LongMemEval results
+    ├── longmemeval-cognee/     # Cognee LongMemEval results
+    ├── longmemeval-zep/        # Zep Cloud LongMemEval results
+    ├── longmemeval-supermemory/# Supermemory Cloud LongMemEval results
+    └── evolving-events/        # Evolving Events benchmark
 ```
 
-## Quick Start
-
-### LoCoMo-10
-
-```bash
-cd benchmarks/locomo
-bash run_benchmark.sh
-```
-
-### LongMemEval
-
-```bash
-cd benchmarks/longmemeval
-pip install -r requirements.txt
-bash scripts/run_benchmark.sh
-```
-
-### Evolving Events
-
-See `benchmarks/evolving-events/README.md` for detailed instructions.
+Each system subdirectory contains a README with full results, reproduction scripts, raw data, and methodology.
 
 ## Evaluation Methodology
 
 - **LLM-Judge**: Binary CORRECT/WRONG evaluation using GPT-4 class models
 - **Human-like Correctness**: DirectLLM judge for semantic accuracy
-- **DeepEval Correctness**: GEval-based evaluation
 - **BLEU-1 / F1**: Token-level precision and recall metrics
+- **Category 5** (Adversarial): Excluded from LoCoMo per standard methodology (no gold answers)
+
+All benchmarks use identical prompts, metrics, and judge models across systems to ensure fair comparison.
 
 ## Citation
 
@@ -99,7 +103,7 @@ If you use these benchmarks in your research, please cite:
   title = {MFlow Benchmarks},
   author = {MFlow Team},
   year = {2026},
-  url = {https://github.com/mflow-ai/mflow-benchmarks}
+  url = {https://github.com/FlowElement-ai/mflow-benchmarks}
 }
 ```
 
