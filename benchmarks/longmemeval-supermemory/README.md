@@ -85,11 +85,8 @@ python scripts/evaluate.py --max-questions 400 --start-from 100
 ├── data/
 │   └── longmemeval_oracle.json    # LongMemEval Oracle dataset (500 questions)
 ├── results/
-│   ├── eval_500_summary.json      # Aggregate metrics
-│   ├── eval_500_per_question.json # Per-question: answer, judge, scores, latency
-│   ├── eval_by_type.json          # Metrics grouped by question type
-│   ├── ingest_summary.json        # Ingestion status
-│   └── config.json                # Full configuration snapshot
+│   ├── eval_100_summary.json      # Aggregate metrics
+│   └── eval_100_per_question.json # Per-question: answer, judge, scores, latency
 ├── requirements.txt
 ├── .env.example
 └── README.md
@@ -97,7 +94,7 @@ python scripts/evaluate.py --max-questions 400 --start-from 100
 
 ## Per-Question Result Fields
 
-Each entry in `eval_500_per_question.json` contains:
+Each entry in `eval_100_per_question.json` contains:
 
 | Field | Description |
 |-------|-------------|

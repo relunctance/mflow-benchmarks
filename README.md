@@ -6,7 +6,7 @@ Comparative benchmark suite evaluating episodic memory systems for AI agents.
 
 | Benchmark | Questions | Systems Tested | Key Metric |
 |-----------|-----------|----------------|------------|
-| **LoCoMo-10** | 1,540 | M-flow, Cognee Cloud, Zep Cloud, Supermemory, Mem0 Cloud | LLM-Judge Accuracy |
+| **LoCoMo-10** | 1,540 | M-flow, Cognee Cloud, Zep Cloud, Supermemory Cloud, Mem0 Cloud | LLM-Judge Accuracy |
 | **LongMemEval** | 100 | M-flow, Supermemory Cloud, Mem0 Cloud, Zep Cloud, Cognee | LLM-Judge Accuracy |
 | **Evolving Events** | 100 | M-flow, Cognee, Graphiti | Human-like Correctness |
 
@@ -23,7 +23,7 @@ All systems use gpt-5-mini (answer) + gpt-4o-mini (judge). Cat 5 (adversarial) e
 | **M-flow** | **81.8%** | gpt-5-mini | gpt-4o-mini | 10 |
 | Cognee Cloud | 79.4% | gpt-5-mini | gpt-4o-mini | 10 |
 | Zep Cloud (7e+3n) | 73.4% | gpt-5-mini | gpt-4o-mini | 10 |
-| Supermemory | 64.4% | gpt-5-mini | gpt-4o-mini | 10 |
+| Supermemory Cloud | 64.4% | gpt-5-mini | gpt-4o-mini | 10 |
 
 **With vendor-default retrieval budgets**
 
@@ -34,7 +34,7 @@ All systems use gpt-5-mini (answer) + gpt-4o-mini (judge). Cat 5 (adversarial) e
 | Zep Cloud (20e+20n) | 78.4% | gpt-5-mini | gpt-4o-mini | 40 |
 | Mem0ᵍ Cloud (published) | 68.5% | — | — | — |
 | Mem0 Cloud (published) | 67.1% | — | — | — |
-| Supermemory | 64.4% | gpt-5-mini | gpt-4o-mini | 10 |
+| Supermemory Cloud | 64.4% | gpt-5-mini | gpt-4o-mini | 10 |
 | Mem0 Cloud (tested) | 50.4% | gpt-5-mini | gpt-4o-mini | 30 |
 
 Mem0 published scores from [Mem0 paper](https://arxiv.org/abs/2504.19413); answer/judge LLMs not disclosed. Our tested result (50.4%) uses the same evaluation pipeline as all other systems.
@@ -73,7 +73,7 @@ mflow-benchmarks/
     ├── locomo-mflow/           # M-flow LoCoMo-10 results
     ├── locomo-cognee/          # Cognee Cloud LoCoMo-10 results
     ├── locomo-zep/             # Zep Cloud LoCoMo-10 results
-    ├── locomo-supermemory/     # Supermemory LoCoMo-10 results
+    ├── locomo-supermemory/     # Supermemory Cloud LoCoMo-10 results
     ├── locomo-mem0/            # Mem0 Cloud LoCoMo-10 results
     ├── longmemeval-mflow/      # M-flow LongMemEval results
     ├── longmemeval-mem0/       # Mem0 Cloud LongMemEval results

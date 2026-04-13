@@ -83,7 +83,7 @@ python scripts/analyze_results.py results/cognee_eval_results.json --export
 The `results/` directory contains our complete evaluation data. To verify:
 
 ```bash
-python scripts/analyze_results.py results/cognee_eval_results_100.json
+python scripts/analyze_results.py results/eval_100_per_question.json
 ```
 
 To reproduce from scratch, follow the Quick Start steps above. Note that gpt-5-mini is a reasoning model with non-deterministic output, so exact scores may vary slightly across runs.
@@ -152,11 +152,9 @@ cognee_longmemeval_benchmark/
 │   ├── analyze_results.py            # Results analysis
 │   └── run_benchmark.sh              # End-to-end runner
 ├── results/
-│   ├── cognee_eval_results_100.json  # First 100 Qs (summary + per-Q)
-│   ├── cognee_eval_first100_detailed.json  # Detailed with full retrieval
+│   ├── eval_100_per_question.json    # First 100 Qs (per-question results)
 │   ├── eval_summary.json             # Compact summary
-│   ├── eval_by_type.json             # Per-type breakdown
-│   └── cognee_ingest_map.json        # question_id -> dataset mapping
+│   └── eval_by_type.json             # Per-type breakdown
 └── docker/
     ├── docker-compose.yml            # Cognee Docker deployment
     └── .env.example                  # Docker env template
@@ -164,7 +162,7 @@ cognee_longmemeval_benchmark/
 
 ## Per-Question Result Fields
 
-Each entry in `cognee_eval_results_100.json` contains:
+Each entry in `eval_100_per_question.json` contains:
 
 | Field | Description |
 |-------|-------------|

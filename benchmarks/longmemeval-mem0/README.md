@@ -1,6 +1,6 @@
-# Mem0 LongMemEval Benchmark
+# Mem0 Cloud — LongMemEval Benchmark Results
 
-Benchmarking [Mem0](https://mem0.ai/) Platform API on the
+Benchmarking [Mem0 Cloud](https://mem0.ai/) Platform API on the
 [LongMemEval](https://github.com/xiaowu0162/LongMemEval) dataset (ICLR 2025) —
 a comprehensive evaluation of long-term interactive memory capabilities.
 
@@ -47,8 +47,7 @@ mem0_longmemeval_benchmark/
 │   ├── analyze_results.py              # Result analysis & cross-engine comparison
 │   └── export_detailed_results.py      # Export full retrieval text (no truncation)
 └── results/
-    ├── mem0_eval_results_100.json          # 100-question evaluation results
-    └── mem0_eval_first100_detailed.json    # First 100 questions with full memories
+    └── eval_100_per_question.json          # 100-question evaluation results
 ```
 
 ## Quick Start
@@ -99,10 +98,10 @@ python scripts/export_detailed_results.py --max-questions 100
 
 ```bash
 # Single-engine analysis
-python scripts/analyze_results.py results/mem0_eval_results_100.json
+python scripts/analyze_results.py results/eval_100_per_question.json
 
 # Cross-engine comparison
-python scripts/analyze_results.py --compare path/to/mflow_results.json results/mem0_eval_results_100.json
+python scripts/analyze_results.py --compare path/to/mflow_results.json results/eval_100_per_question.json
 ```
 
 ## Methodology
@@ -145,7 +144,7 @@ All prompts, models, and metric implementations are identical to the MFlow bench
 
 ## Result File Schema
 
-Each entry in `results[]` contains:
+Each entry in `eval_100_per_question.json` contains:
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -163,10 +162,8 @@ Each entry in `results[]` contains:
 | `generation_ms` | float | Answer generation latency (ms) |
 | `total_ms` | float | Total per-question latency (ms) |
 
-> **Note**: In `mem0_eval_results_100.json`, the `memories_retrieved` field is
-> truncated to 500 characters for storage efficiency. The file
-> `mem0_eval_first100_detailed.json` contains the **full, non-truncated** retrieval
-> text for the first 100 questions.
+> **Note**: The `memories_retrieved` field may be truncated to 500 characters
+> for storage efficiency.
 
 ## Known Mem0 Platform Limitations
 

@@ -36,7 +36,7 @@ Including adversarial (Cat 5): 65.0% (1291/1986)
 
 | Component | Value |
 |-----------|-------|
-| System | Supermemory |
+| System | Supermemory Cloud |
 | Framework | MemoryBench |
 | Run ID | locomo-sm-test-002 |
 | Test date | 2026-04-02 to 2026-04-05 |
@@ -81,7 +81,7 @@ Including adversarial (Cat 5): 65.0% (1291/1986)
 | M-flow | 81.8% | gpt-5-mini | gpt-4o-mini | 10 |
 | Cognee Cloud | 79.4% | gpt-5-mini | gpt-4o-mini | 10 |
 | Zep Cloud (7e+3n) | 73.4% | gpt-5-mini | gpt-4o-mini | 10 |
-| **Supermemory** | **64.4%** | gpt-5-mini | gpt-4o-mini | 10 |
+| **Supermemory Cloud** | **64.4%** | gpt-5-mini | gpt-4o-mini | 10 |
 
 ### With vendor-default retrieval budgets
 
@@ -93,7 +93,7 @@ Including adversarial (Cat 5): 65.0% (1291/1986)
 | Mem0ᵍ Cloud (published) | 68.5% | — | — | — |
 | Mem0 Cloud (published) | 67.1% | — | — | — |
 | Mem0 Cloud (tested) | 50.4% | gpt-5-mini | gpt-4o-mini | 30 |
-| **Supermemory** | **64.4%** | gpt-5-mini | gpt-4o-mini | 10 |
+| **Supermemory Cloud** | **64.4%** | gpt-5-mini | gpt-4o-mini | 10 |
 
 Mem0 retrieval budget not disclosed in paper. Published scores from [Mem0 paper](https://arxiv.org/abs/2504.19413); answer/judge LLMs not disclosed.
 
