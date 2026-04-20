@@ -129,10 +129,6 @@ All metric implementations are in `scripts/metrics.py` and are aligned with the 
 | Judge model | gpt-4o-mini | gpt-4o-mini |
 | Overlap/redundancy | No chunk overlap | N/A (episodes are deduplicated) |
 
-### Why Cognee CHUNKS Returns More Context
-
-Cognee's CHUNKS mode returns the raw conversation text, which preserves all original information. Each of the 10 retrieved chunks contains a full conversation session (15-30 messages). This means the LLM receives significantly more raw context compared to M-flow's concise Episode summaries, which potentially helps with factual recall but increases token usage.
-
 ## 8. Known Limitations
 
 1. **No chunk overlap**: Cognee's default `TextChunker` does not implement overlap between chunks. Information at chunk boundaries could be lost if sessions were large enough to be split.

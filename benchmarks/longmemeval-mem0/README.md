@@ -165,19 +165,10 @@ Each entry in `eval_100_per_question.json` contains:
 > **Note**: The `memories_retrieved` field may be truncated to 500 characters
 > for storage efficiency.
 
-## Known Mem0 Platform Limitations
+## Mem0 Platform Note
 
-1. **Async-only ingestion**: `mem0.add()` is always asynchronous. The deprecated
-   `async_mode=False` parameter has no effect. A post-ingestion wait is required.
-
-2. **Semantic search misses (~10%)**: For some questions, memories are stored
-   successfully but `search()` returns 0 results — the query-to-memory vector
-   similarity falls below Mem0's internal threshold.
-
-3. **Memory extraction failures (~4%)**: Mem0's backend extracts no memories from
-   certain conversations, particularly `single-session-assistant` type content
-   (e.g., shift schedules, musical notation) that contains structured data rather
-   than personal facts.
+- **Async-only ingestion**: `mem0.add()` is always asynchronous. The deprecated
+  `async_mode=False` parameter has no effect. A post-ingestion wait is required.
 
 ## Reproducibility
 
