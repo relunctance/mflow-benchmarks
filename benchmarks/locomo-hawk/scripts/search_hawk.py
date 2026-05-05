@@ -45,6 +45,8 @@ class HawkSearchAligned:
             return self._openai_complete(prompt)
         elif self.llm_provider == "custom":
             return self._custom_complete(prompt)
+        elif self.llm_provider == "xinference":
+            return self._xinference_complete(prompt)
         else:
             return self._openai_complete(prompt)
 
@@ -103,6 +105,25 @@ class HawkSearchAligned:
         except Exception as e:
             return f"[CUSTOM_LLM_ERROR: {str(e)[:100]}]"
 
+    def _xinference_complete(self, prompt: str) -> str:
+        """Xinference local qwen3 endpoint (no rate limit, no API cost)."""
+        try:
+            from openai import OpenAI
+            # Xinference OpenAI-compatible API: http://localhost:9997/v1
+            client = OpenAI(
+                api_key="unused",
+                base_url="http://localhost:9997/v1",
+            )
+            response = client.chat.completions.create(
+                model="qwen3",
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=100,
+                temperature=0.0,
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            return f"[XINFERENCE_ERROR: {str(e)[:100]}]"
+
     def search_memories(self, query: str) -> list[dict]:
         """返回格式对齐 m_flow 官方：list[{"memory": str, "timestamp": str, "score": float}]"""
         texts = self.hawk.recall(query, self.top_k)
@@ -154,8 +175,8 @@ async def main():
     parser.add_argument("--hawk-url", type=str, default="http://127.0.0.1:18368")
     parser.add_argument("--top-k", type=int, default=10)
     parser.add_argument("--llm-provider", type=str, default="openai",
-                        choices=["openai", "minimax", "custom"],
-                        help="LLM provider: openai, minimax, or custom")
+                        choices=["openai", "minimax", "custom", "xinference"],
+                        help="LLM provider: openai, minimax, custom (OpenAI-compatible), or xinference (local qwen3, no rate limit)")
     parser.add_argument("--llm-api-key", type=str, default=None,
                         help="API key (or set OPENAI_API_KEY / MINIMAX_CN_API_KEY env var)")
     parser.add_argument("--llm-base-url", type=str, default=None,
