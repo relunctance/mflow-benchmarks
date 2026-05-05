@@ -56,7 +56,7 @@ class MflowSearchAligned:
             dataset_prefix: Dataset name prefix
             use_graph: Whether to include graph relations (like Mem0's is_graph)
         """
-        self.openai_client = OpenAI()
+        self.openai_client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL"))
         self.top_k = top_k
         self.output_path = output_path
         self.results = defaultdict(list)

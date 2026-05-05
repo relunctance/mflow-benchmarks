@@ -183,6 +183,8 @@ async def main():
                         help="Base URL for custom LLM (e.g., OpenAI-compatible endpoint)")
     parser.add_argument("--llm-model", type=str, default=None,
                         help="Model name (default: gpt-4o-mini for OpenAI, MiniMax-M2.7 for minimax)")
+    parser.add_argument("--skip-capture", action="store_true",
+                        help="Skip memory ingestion step — use for benchmark to avoid data pollution")
     args = parser.parse_args()
 
     hawk_search = HawkSearchAligned(
@@ -202,14 +204,17 @@ async def main():
     print(f"LLM: {args.llm_provider} ({hawk_search.llm_model})")
 
     # Ingest all answers — batch capture for efficiency (1540 items × 13s sequential → ~1 batch)
-    print("Capturing all memories...")
-    answers = [str(item.get("answer", "")) for item in dataset if item.get("answer")]
-    if answers:
-        captured_ids = hawk_search.hawk.capture_batch(answers)
-        print(f"  Captured {len(captured_ids)} memories via batch endpoint")
-
-    print("Waiting for index...")
-    time.sleep(3)
+    # ⚠️ BENCHMARK MODE: skip capture to avoid data pollution — LOCOMO Q&A must NOT be in DB
+    if not args.skip_capture:
+        print("Capturing all memories...")
+        answers = [str(item.get("answer", "")) for item in dataset if item.get("answer")]
+        if answers:
+            captured_ids = hawk_search.hawk.capture_batch(answers)
+            print(f"  Captured {len(captured_ids)} memories via batch endpoint")
+        print("Waiting for index...")
+        time.sleep(3)
+    else:
+        print("⚠️  Skipping capture (--skip-capture) — using existing memories in DB")
 
     # Answer all questions
     print("Answering questions...")
