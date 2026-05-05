@@ -180,12 +180,12 @@ async def main():
     print(f"Dataset: {len(dataset)} questions")
     print(f"LLM: {args.llm_provider} ({hawk_search.llm_model})")
 
-    # Ingest all answers
+    # Ingest all answers — batch capture for efficiency (1540 items × 13s sequential → ~1 batch)
     print("Capturing all memories...")
-    for item in dataset:
-        answer = item.get("answer", "")
-        if answer:
-            hawk_search.hawk.capture(str(answer))
+    answers = [str(item.get("answer", "")) for item in dataset if item.get("answer")]
+    if answers:
+        captured_ids = hawk_search.hawk.capture_batch(answers)
+        print(f"  Captured {len(captured_ids)} memories via batch endpoint")
 
     print("Waiting for index...")
     time.sleep(3)
