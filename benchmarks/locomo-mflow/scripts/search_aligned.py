@@ -342,7 +342,18 @@ Answer:"""
             max_conversations: Maximum conversations to process (for quick testing)
         """
         with open(file_path, "r") as f:
-            data = json.load(f)
+            first_char = f.read(1)
+            f.seek(0)
+            if first_char == "[":
+                # JSON array format
+                data = json.load(f)
+            else:
+                # JSONL format (one JSON object per line)
+                data = []
+                for line in f:
+                    line = line.strip()
+                    if line:
+                        data.append(json.loads(line))
         
         # Limit conversations if specified
         if max_conversations is not None:
