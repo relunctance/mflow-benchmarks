@@ -348,12 +348,37 @@ Answer:"""
                 # JSON array format
                 data = json.load(f)
             else:
-                # JSONL format (one JSON object per line)
-                data = []
+                # JSONL format: each line is one QA entry or one nested conversation
+                raw_lines = []
                 for line in f:
                     line = line.strip()
                     if line:
-                        data.append(json.loads(line))
+                        raw_lines.append(json.loads(line))
+
+                # Detect format: if each line has "question"/"answer" but no "qa"/"conversation"
+                # it's flat format (one QA per line). Wrap each into nested structure.
+                first = raw_lines[0] if raw_lines else {}
+                if "question" in first and "answer" in first and "qa" not in first:
+                    # Flat format: convert each line to a single-QA "conversation"
+                    # Extract speaker info from conv_id if present, else use default
+                    data = []
+                    for item in raw_lines:
+                        conv_id = item.get("conv_id", "conv-unknown")
+                        # Parse conv_id like "conv-26" -> extract number for idx
+                        # For dataset_prefix we use the conv_id directly
+                        entry = {
+                            "qa": [{"question": item["question"], "answer": item["answer"],
+                                    "category": item.get("category", -1)}],
+                            "conversation": {
+                                "speaker_a": "Caroline",
+                                "speaker_b": "Melanie",
+                            },
+                            "sample_id": conv_id,
+                        }
+                        data.append(entry)
+                else:
+                    # Already nested format
+                    data = raw_lines
         
         # Limit conversations if specified
         if max_conversations is not None:
